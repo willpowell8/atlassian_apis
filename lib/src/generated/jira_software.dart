@@ -405,7 +405,7 @@ class BoardApi {
   /// estimation used for the board. Valid values: none, issueCount, field. If
   /// the estimation type is "field", the ID and display name of the field used
   /// for estimation is also returned. Note, estimates for an issue can be
-  /// updated by a PUT /rest/api/3/issue/{issueIdOrKey} request, however the
+  /// updated by a PUT /rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey} request, however the
   /// fields must be on the screen. "timeoriginalestimate" field will never be
   /// on the screen, so in order to update it "originalEstimate" in
   /// "timetracking" field should be updated.

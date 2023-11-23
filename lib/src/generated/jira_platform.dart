@@ -640,7 +640,7 @@ class AnnouncementBannerApi {
   Future<AnnouncementBannerConfiguration> getBanner() async {
     return AnnouncementBannerConfiguration.fromJson(await _client.send(
       'get',
-      'rest/api/3/announcementBanner',
+      'rest/api/${ApiClient.API_VERSION}/announcementBanner',
     ));
   }
 
@@ -652,7 +652,7 @@ class AnnouncementBannerApi {
       {required AnnouncementBannerConfigurationUpdate body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/announcementBanner',
+      'rest/api/${ApiClient.API_VERSION}/announcementBanner',
       body: body.toJson(),
     );
   }
@@ -862,7 +862,7 @@ class ApplicationRolesApi {
   Future<List<ApplicationRole>> getAllApplicationRoles() async {
     return (await _client.send(
       'get',
-      'rest/api/3/applicationrole',
+      'rest/api/${ApiClient.API_VERSION}/applicationrole',
     ) as List<Object?>)
         .map((i) =>
             ApplicationRole.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -876,7 +876,7 @@ class ApplicationRolesApi {
   Future<ApplicationRole> getApplicationRole(String key) async {
     return ApplicationRole.fromJson(await _client.send(
       'get',
-      'rest/api/3/applicationrole/{key}',
+      'rest/api/${ApiClient.API_VERSION}/applicationrole/{key}',
       pathParameters: {
         'key': key,
       },
@@ -924,7 +924,7 @@ class AuditRecordsApi {
       DateTime? to}) async {
     return AuditRecords.fromJson(await _client.send(
       'get',
-      'rest/api/3/auditing/record',
+      'rest/api/${ApiClient.API_VERSION}/auditing/record',
       queryParameters: {
         if (offset != null) 'offset': '$offset',
         if (limit != null) 'limit': '$limit',
@@ -952,7 +952,7 @@ class AvatarsApi {
   Future<SystemAvatars> getAllSystemAvatars(String type) async {
     return SystemAvatars.fromJson(await _client.send(
       'get',
-      'rest/api/3/avatar/{type}/system',
+      'rest/api/${ApiClient.API_VERSION}/avatar/{type}/system',
       pathParameters: {
         'type': type,
       },
@@ -976,7 +976,7 @@ class AvatarsApi {
       {required String type, required String entityId}) async {
     return Avatars.fromJson(await _client.send(
       'get',
-      'rest/api/3/universal_avatar/type/{type}/owner/{entityId}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/type/{type}/owner/{entityId}',
       pathParameters: {
         'type': type,
         'entityId': entityId,
@@ -1007,7 +1007,7 @@ class AvatarsApi {
   /// `--data-binary "<@/path/to/file/with/your/avatar>" `
   ///
   /// `--url
-  /// 'https://your-domain.atlassian.net/rest/api/3/universal_avatar/type/{type}/owner/{entityId}'`
+  /// 'https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/universal_avatar/type/{type}/owner/{entityId}'`
   ///
   /// The avatar is cropped to a square. If no crop parameters are specified,
   /// the square originates at the top left of the image. The length of the
@@ -1035,7 +1035,7 @@ class AvatarsApi {
       required dynamic body}) async {
     return Avatar.fromJson(await _client.send(
       'post',
-      'rest/api/3/universal_avatar/type/{type}/owner/{entityId}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/type/{type}/owner/{entityId}',
       pathParameters: {
         'type': type,
         'entityId': entityId,
@@ -1059,7 +1059,7 @@ class AvatarsApi {
       required int id}) async {
     await _client.send(
       'delete',
-      'rest/api/3/universal_avatar/type/{type}/owner/{owningObjectId}/avatar/{id}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/type/{type}/owner/{owningObjectId}/avatar/{id}',
       pathParameters: {
         'type': type,
         'owningObjectId': owningObjectId,
@@ -1077,7 +1077,7 @@ class AvatarsApi {
       {required String type, String? size, String? format}) async {
     await _client.send(
       'get',
-      'rest/api/3/universal_avatar/view/type/{type}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/view/type/{type}',
       pathParameters: {
         'type': type,
       },
@@ -1108,7 +1108,7 @@ class AvatarsApi {
       String? format}) async {
     await _client.send(
       'get',
-      'rest/api/3/universal_avatar/view/type/{type}/avatar/{id}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/view/type/{type}/avatar/{id}',
       pathParameters: {
         'type': type,
         'id': '$id',
@@ -1140,7 +1140,7 @@ class AvatarsApi {
       String? format}) async {
     await _client.send(
       'get',
-      'rest/api/3/universal_avatar/view/type/{type}/owner/{entityId}',
+      'rest/api/${ApiClient.API_VERSION}/universal_avatar/view/type/{type}/owner/{entityId}',
       pathParameters: {
         'type': type,
         'entityId': entityId,
@@ -1170,7 +1170,7 @@ class DashboardsApi {
       {String? filter, int? startAt, int? maxResults}) async {
     return PageOfDashboards.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard',
+      'rest/api/${ApiClient.API_VERSION}/dashboard',
       queryParameters: {
         if (filter != null) 'filter': filter,
         if (startAt != null) 'startAt': '$startAt',
@@ -1185,7 +1185,7 @@ class DashboardsApi {
   Future<Dashboard> createDashboard({required DashboardDetails body}) async {
     return Dashboard.fromJson(await _client.send(
       'post',
-      'rest/api/3/dashboard',
+      'rest/api/${ApiClient.API_VERSION}/dashboard',
       body: body.toJson(),
     ));
   }
@@ -1201,7 +1201,7 @@ class DashboardsApi {
       {required BulkEditShareableEntityRequest body}) async {
     return BulkEditShareableEntityResponse.fromJson(await _client.send(
       'put',
-      'rest/api/3/dashboard/bulk/edit',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/bulk/edit',
       body: body.toJson(),
     ));
   }
@@ -1213,7 +1213,7 @@ class DashboardsApi {
       getAllAvailableDashboardGadgets() async {
     return AvailableDashboardGadgetsResponse.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/gadgets',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/gadgets',
     ));
   }
 
@@ -1250,7 +1250,7 @@ class DashboardsApi {
       String? expand}) async {
     return PageBeanDashboard.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/search',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/search',
       queryParameters: {
         if (dashboardName != null) 'dashboardName': dashboardName,
         if (accountId != null) 'accountId': accountId,
@@ -1286,7 +1286,7 @@ class DashboardsApi {
       List<int>? gadgetId}) async {
     return DashboardGadgetResponse.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/{dashboardId}/gadget',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/gadget',
       pathParameters: {
         'dashboardId': '$dashboardId',
       },
@@ -1305,7 +1305,7 @@ class DashboardsApi {
       {required int dashboardId, required DashboardGadgetSettings body}) async {
     return DashboardGadget.fromJson(await _client.send(
       'post',
-      'rest/api/3/dashboard/{dashboardId}/gadget',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/gadget',
       pathParameters: {
         'dashboardId': '$dashboardId',
       },
@@ -1322,7 +1322,7 @@ class DashboardsApi {
       required DashboardGadgetUpdateRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/dashboard/{dashboardId}/gadget/{gadgetId}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/gadget/{gadgetId}',
       pathParameters: {
         'dashboardId': '$dashboardId',
         'gadgetId': '$gadgetId',
@@ -1341,7 +1341,7 @@ class DashboardsApi {
       {required int dashboardId, required int gadgetId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/dashboard/{dashboardId}/gadget/{gadgetId}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/gadget/{gadgetId}',
       pathParameters: {
         'dashboardId': '$dashboardId',
         'gadgetId': '$gadgetId',
@@ -1364,7 +1364,7 @@ class DashboardsApi {
       {required String dashboardId, required String itemId}) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/items/{itemId}/properties',
       pathParameters: {
         'dashboardId': dashboardId,
         'itemId': itemId,
@@ -1406,7 +1406,7 @@ class DashboardsApi {
       required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
       pathParameters: {
         'dashboardId': dashboardId,
         'itemId': itemId,
@@ -1452,7 +1452,7 @@ class DashboardsApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
       pathParameters: {
         'dashboardId': dashboardId,
         'itemId': itemId,
@@ -1476,7 +1476,7 @@ class DashboardsApi {
       required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}',
       pathParameters: {
         'dashboardId': dashboardId,
         'itemId': itemId,
@@ -1499,7 +1499,7 @@ class DashboardsApi {
   Future<Dashboard> getDashboard(String id) async {
     return Dashboard.fromJson(await _client.send(
       'get',
-      'rest/api/3/dashboard/{id}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{id}',
       pathParameters: {
         'id': id,
       },
@@ -1516,7 +1516,7 @@ class DashboardsApi {
       {required String id, required DashboardDetails body}) async {
     return Dashboard.fromJson(await _client.send(
       'put',
-      'rest/api/3/dashboard/{id}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{id}',
       pathParameters: {
         'id': id,
       },
@@ -1532,7 +1532,7 @@ class DashboardsApi {
   Future<void> deleteDashboard(String id) async {
     await _client.send(
       'delete',
-      'rest/api/3/dashboard/{id}',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{id}',
       pathParameters: {
         'id': id,
       },
@@ -1549,7 +1549,7 @@ class DashboardsApi {
       {required String id, required DashboardDetails body}) async {
     return Dashboard.fromJson(await _client.send(
       'post',
-      'rest/api/3/dashboard/{id}/copy',
+      'rest/api/${ApiClient.API_VERSION}/dashboard/{id}/copy',
       pathParameters: {
         'id': id,
       },
@@ -1617,7 +1617,7 @@ class FilterSharingApi {
   Future<DefaultShareScope> getDefaultShareScope() async {
     return DefaultShareScope.fromJson(await _client.send(
       'get',
-      'rest/api/3/filter/defaultShareScope',
+      'rest/api/${ApiClient.API_VERSION}/filter/defaultShareScope',
     ));
   }
 
@@ -1628,7 +1628,7 @@ class FilterSharingApi {
       {required DefaultShareScope body}) async {
     return DefaultShareScope.fromJson(await _client.send(
       'put',
-      'rest/api/3/filter/defaultShareScope',
+      'rest/api/${ApiClient.API_VERSION}/filter/defaultShareScope',
       body: body.toJson(),
     ));
   }
@@ -1652,7 +1652,7 @@ class FilterSharingApi {
   Future<List<SharePermission>> getSharePermissions(int id) async {
     return (await _client.send(
       'get',
-      'rest/api/3/filter/{id}/permission',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/permission',
       pathParameters: {
         'id': '$id',
       },
@@ -1676,7 +1676,7 @@ class FilterSharingApi {
       {required int id, required SharePermissionInputBean body}) async {
     return (await _client.send(
       'post',
-      'rest/api/3/filter/{id}/permission',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/permission',
       pathParameters: {
         'id': '$id',
       },
@@ -1707,7 +1707,7 @@ class FilterSharingApi {
       {required int id, required int permissionId}) async {
     return SharePermission.fromJson(await _client.send(
       'get',
-      'rest/api/3/filter/{id}/permission/{permissionId}',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/permission/{permissionId}',
       pathParameters: {
         'id': '$id',
         'permissionId': '$permissionId',
@@ -1723,7 +1723,7 @@ class FilterSharingApi {
       {required int id, required int permissionId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/filter/{id}/permission/{permissionId}',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/permission/{permissionId}',
       pathParameters: {
         'id': '$id',
         'permissionId': '$permissionId',
@@ -1750,7 +1750,7 @@ class FiltersApi {
       required Filter body}) async {
     return Filter.fromJson(await _client.send(
       'post',
-      'rest/api/3/filter',
+      'rest/api/${ApiClient.API_VERSION}/filter',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (overrideSharePermissions != null)
@@ -1779,7 +1779,7 @@ class FiltersApi {
   Future<List<Filter>> getFavouriteFilters({String? expand}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/filter/favourite',
+      'rest/api/${ApiClient.API_VERSION}/filter/favourite',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -1808,7 +1808,7 @@ class FiltersApi {
       {String? expand, bool? includeFavourites}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/filter/my',
+      'rest/api/${ApiClient.API_VERSION}/filter/my',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (includeFavourites != null)
@@ -1855,7 +1855,7 @@ class FiltersApi {
       bool? overrideSharePermissions}) async {
     return PageBeanFilterDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/filter/search',
+      'rest/api/${ApiClient.API_VERSION}/filter/search',
       queryParameters: {
         if (filterName != null) 'filterName': filterName,
         if (accountId != null) 'accountId': accountId,
@@ -1891,7 +1891,7 @@ class FiltersApi {
       {required int id, String? expand, bool? overrideSharePermissions}) async {
     return Filter.fromJson(await _client.send(
       'get',
-      'rest/api/3/filter/{id}',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -1915,7 +1915,7 @@ class FiltersApi {
       required Filter body}) async {
     return Filter.fromJson(await _client.send(
       'put',
-      'rest/api/3/filter/{id}',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -1937,7 +1937,7 @@ class FiltersApi {
   Future<void> deleteFilter(int id) async {
     await _client.send(
       'delete',
-      'rest/api/3/filter/{id}',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -1963,7 +1963,7 @@ class FiltersApi {
   Future<List<ColumnItem>> getColumns(int id) async {
     return (await _client.send(
       'get',
-      'rest/api/3/filter/{id}/columns',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/columns',
       pathParameters: {
         'id': '$id',
       },
@@ -1980,7 +1980,7 @@ class FiltersApi {
   /// example, in curl:
   ///
   /// `curl -X PUT -d columns=summary -d columns=description
-  /// https://your-domain.atlassian.net/rest/api/3/filter/10000/columns`
+  /// https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/filter/10000/columns`
   ///
   /// **[Permissions](#permissions) required:** Permission to access Jira,
   /// however, columns are only set for:
@@ -1996,7 +1996,7 @@ class FiltersApi {
       {required int id, required List<String> body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/filter/{id}/columns',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/columns',
       pathParameters: {
         'id': '$id',
       },
@@ -2019,7 +2019,7 @@ class FiltersApi {
   Future<void> resetColumns(int id) async {
     await _client.send(
       'delete',
-      'rest/api/3/filter/{id}/columns',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/columns',
       pathParameters: {
         'id': '$id',
       },
@@ -2042,7 +2042,7 @@ class FiltersApi {
       {required int id, String? expand}) async {
     return Filter.fromJson(await _client.send(
       'put',
-      'rest/api/3/filter/{id}/favourite',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/favourite',
       pathParameters: {
         'id': '$id',
       },
@@ -2063,7 +2063,7 @@ class FiltersApi {
       {required int id, String? expand}) async {
     return Filter.fromJson(await _client.send(
       'delete',
-      'rest/api/3/filter/{id}/favourite',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/favourite',
       pathParameters: {
         'id': '$id',
       },
@@ -2082,7 +2082,7 @@ class FiltersApi {
       {required int id, required ChangeFilterOwner body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/filter/{id}/owner',
+      'rest/api/${ApiClient.API_VERSION}/filter/{id}/owner',
       pathParameters: {
         'id': '$id',
       },
@@ -2150,7 +2150,7 @@ class GroupAndUserPickerApi {
       bool? excludeConnectAddons}) async {
     return FoundUsersAndGroups.fromJson(await _client.send(
       'get',
-      'rest/api/3/groupuserpicker',
+      'rest/api/${ApiClient.API_VERSION}/groupuserpicker',
       queryParameters: {
         'query': query,
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -2187,7 +2187,7 @@ class GroupsApi {
       {String? groupname, String? groupId, String? expand}) async {
     return Group.fromJson(await _client.send(
       'get',
-      'rest/api/3/group',
+      'rest/api/${ApiClient.API_VERSION}/group',
       queryParameters: {
         if (groupname != null) 'groupname': groupname,
         if (groupId != null) 'groupId': groupId,
@@ -2204,7 +2204,7 @@ class GroupsApi {
   Future<Group> createGroup({required AddGroupBean body}) async {
     return Group.fromJson(await _client.send(
       'post',
-      'rest/api/3/group',
+      'rest/api/${ApiClient.API_VERSION}/group',
       body: body.toJson(),
     ));
   }
@@ -2221,7 +2221,7 @@ class GroupsApi {
       String? swapGroupId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/group',
+      'rest/api/${ApiClient.API_VERSION}/group',
       queryParameters: {
         if (groupname != null) 'groupname': groupname,
         if (groupId != null) 'groupId': groupId,
@@ -2244,7 +2244,7 @@ class GroupsApi {
       String? applicationKey}) async {
     return PageBeanGroupDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/group/bulk',
+      'rest/api/${ApiClient.API_VERSION}/group/bulk',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -2271,7 +2271,7 @@ class GroupsApi {
       int? maxResults}) async {
     return PageBeanUserDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/group/member',
+      'rest/api/${ApiClient.API_VERSION}/group/member',
       queryParameters: {
         if (groupname != null) 'groupname': groupname,
         if (groupId != null) 'groupId': groupId,
@@ -2294,7 +2294,7 @@ class GroupsApi {
       required UpdateUserToGroupBean body}) async {
     return Group.fromJson(await _client.send(
       'post',
-      'rest/api/3/group/user',
+      'rest/api/${ApiClient.API_VERSION}/group/user',
       queryParameters: {
         if (groupname != null) 'groupname': groupname,
         if (groupId != null) 'groupId': groupId,
@@ -2315,7 +2315,7 @@ class GroupsApi {
       required String accountId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/group/user',
+      'rest/api/${ApiClient.API_VERSION}/group/user',
       queryParameters: {
         if (groupname != null) 'groupname': groupname,
         if (groupId != null) 'groupId': groupId,
@@ -2359,7 +2359,7 @@ class GroupsApi {
       String? userName}) async {
     return FoundGroups.fromJson(await _client.send(
       'get',
-      'rest/api/3/groups/picker',
+      'rest/api/${ApiClient.API_VERSION}/groups/picker',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
         if (query != null) 'query': query,
@@ -2402,7 +2402,7 @@ class IssueAttachmentsApi {
       {required String id, bool? redirect}) async {
     return await _client.send(
       'get',
-      'rest/api/3/attachment/content/{id}',
+      'rest/api/${ApiClient.API_VERSION}/attachment/content/{id}',
       pathParameters: {
         'id': id,
       },
@@ -2425,7 +2425,7 @@ class IssueAttachmentsApi {
   Future<AttachmentSettings> getAttachmentMeta() async {
     return AttachmentSettings.fromJson(await _client.send(
       'get',
-      'rest/api/3/attachment/meta',
+      'rest/api/${ApiClient.API_VERSION}/attachment/meta',
     ));
   }
 
@@ -2452,7 +2452,7 @@ class IssueAttachmentsApi {
       int? height}) async {
     return await _client.send(
       'get',
-      'rest/api/3/attachment/thumbnail/{id}',
+      'rest/api/${ApiClient.API_VERSION}/attachment/thumbnail/{id}',
       pathParameters: {
         'id': id,
       },
@@ -2481,7 +2481,7 @@ class IssueAttachmentsApi {
   Future<AttachmentMetadata> getAttachment(String id) async {
     return AttachmentMetadata.fromJson(await _client.send(
       'get',
-      'rest/api/3/attachment/{id}',
+      'rest/api/${ApiClient.API_VERSION}/attachment/{id}',
       pathParameters: {
         'id': id,
       },
@@ -2504,7 +2504,7 @@ class IssueAttachmentsApi {
   Future<void> removeAttachment(String id) async {
     await _client.send(
       'delete',
-      'rest/api/3/attachment/{id}',
+      'rest/api/${ApiClient.API_VERSION}/attachment/{id}',
       pathParameters: {
         'id': id,
       },
@@ -2537,7 +2537,7 @@ class IssueAttachmentsApi {
       String id) async {
     return AttachmentArchiveMetadataReadable.fromJson(await _client.send(
       'get',
-      'rest/api/3/attachment/{id}/expand/human',
+      'rest/api/${ApiClient.API_VERSION}/attachment/{id}/expand/human',
       pathParameters: {
         'id': id,
       },
@@ -2569,7 +2569,7 @@ class IssueAttachmentsApi {
   Future<AttachmentArchiveImpl> expandAttachmentForMachines(String id) async {
     return AttachmentArchiveImpl.fromJson(await _client.send(
       'get',
-      'rest/api/3/attachment/{id}/expand/raw',
+      'rest/api/${ApiClient.API_VERSION}/attachment/{id}/expand/raw',
       pathParameters: {
         'id': id,
       },
@@ -2593,7 +2593,7 @@ class IssueAttachmentsApi {
   /// #### curl ####
   ///
   ///     curl --location --request POST
-  /// 'https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments'
+  /// 'https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/issue/TEST-123/attachments'
   ///      -u 'email@example.com:<api_token>'
   ///      -H 'X-Atlassian-Token: no-check'
   ///      --form 'file=@"myfile.txt"'
@@ -2616,7 +2616,7 @@ class IssueAttachmentsApi {
   ///      form.append('file', fileStream, {knownLength: fileSizeInBytes});
   ///
   ///
-  /// fetch('https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments',
+  /// fetch('https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/issue/TEST-123/attachments',
   /// {
   ///          method: 'POST',
   ///          body: form,
@@ -2750,7 +2750,7 @@ class IssueAttachmentsApi {
       {required String issueIdOrKey, required MultipartFile file}) async {
     return (await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/attachments',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/attachments',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -2784,7 +2784,7 @@ class IssueCommentPropertiesApi {
   Future<PropertyKeys> getCommentPropertyKeys(String commentId) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/comment/{commentId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/comment/{commentId}/properties',
       pathParameters: {
         'commentId': commentId,
       },
@@ -2808,7 +2808,7 @@ class IssueCommentPropertiesApi {
       {required String commentId, required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/comment/{commentId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/comment/{commentId}/properties/{propertyKey}',
       pathParameters: {
         'commentId': commentId,
         'propertyKey': propertyKey,
@@ -2840,7 +2840,7 @@ class IssueCommentPropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/comment/{commentId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/comment/{commentId}/properties/{propertyKey}',
       pathParameters: {
         'commentId': commentId,
         'propertyKey': propertyKey,
@@ -2866,7 +2866,7 @@ class IssueCommentPropertiesApi {
       {required String commentId, required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/comment/{commentId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/comment/{commentId}/properties/{propertyKey}',
       pathParameters: {
         'commentId': commentId,
         'propertyKey': propertyKey,
@@ -2901,7 +2901,7 @@ class IssueCommentsApi {
       {String? expand, required IssueCommentListRequestBean body}) async {
     return PageBeanComment.fromJson(await _client.send(
       'post',
-      'rest/api/3/comment/list',
+      'rest/api/${ApiClient.API_VERSION}/comment/list',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -2931,7 +2931,7 @@ class IssueCommentsApi {
       String? expand}) async {
     return PageOfComments.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/comment',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/comment',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -2961,7 +2961,7 @@ class IssueCommentsApi {
       required Comment body}) async {
     return Comment.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/comment',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/comment',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -2991,7 +2991,7 @@ class IssueCommentsApi {
       String? expand}) async {
     return Comment.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/comment/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/comment/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -3028,7 +3028,7 @@ class IssueCommentsApi {
       required Comment body}) async {
     return Comment.fromJson(await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/comment/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/comment/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -3062,7 +3062,7 @@ class IssueCommentsApi {
       {required String issueIdOrKey, required String id}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/comment/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/comment/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -3106,7 +3106,7 @@ class IssueCustomFieldConfigurationAppsApi {
       int? maxResults}) async {
     return PageBeanContextualConfiguration.fromJson(await _client.send(
       'get',
-      'rest/api/3/app/field/{fieldIdOrKey}/context/configuration',
+      'rest/api/${ApiClient.API_VERSION}/app/field/{fieldIdOrKey}/context/configuration',
       pathParameters: {
         'fieldIdOrKey': fieldIdOrKey,
       },
@@ -3135,7 +3135,7 @@ class IssueCustomFieldConfigurationAppsApi {
       required CustomFieldConfigurations body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/app/field/{fieldIdOrKey}/context/configuration',
+      'rest/api/${ApiClient.API_VERSION}/app/field/{fieldIdOrKey}/context/configuration',
       pathParameters: {
         'fieldIdOrKey': fieldIdOrKey,
       },
@@ -3175,7 +3175,7 @@ class IssueCustomFieldContextsApi {
       int? maxResults}) async {
     return PageBeanCustomFieldContext.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/context',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3202,7 +3202,7 @@ class IssueCustomFieldContextsApi {
       {required String fieldId, required CreateCustomFieldContext body}) async {
     return CreateCustomFieldContext.fromJson(await _client.send(
       'post',
-      'rest/api/3/field/{fieldId}/context',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3282,7 +3282,7 @@ class IssueCustomFieldContextsApi {
       int? maxResults}) async {
     return PageBeanCustomFieldContextDefaultValue.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/context/defaultValue',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/defaultValue',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3366,7 +3366,7 @@ class IssueCustomFieldContextsApi {
       required CustomFieldContextDefaultValueUpdate body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/defaultValue',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/defaultValue',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3388,7 +3388,7 @@ class IssueCustomFieldContextsApi {
       int? maxResults}) async {
     return PageBeanIssueTypeToContextMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/context/issuetypemapping',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/issuetypemapping',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3426,7 +3426,7 @@ class IssueCustomFieldContextsApi {
           required ProjectIssueTypeMappings body}) async {
     return PageBeanContextForProjectAndIssueType.fromJson(await _client.send(
       'post',
-      'rest/api/3/field/{fieldId}/context/mapping',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/mapping',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3451,7 +3451,7 @@ class IssueCustomFieldContextsApi {
       int? maxResults}) async {
     return PageBeanCustomFieldContextProjectMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/context/projectmapping',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/projectmapping',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -3475,7 +3475,7 @@ class IssueCustomFieldContextsApi {
       required CustomFieldContextUpdateDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/{contextId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3493,7 +3493,7 @@ class IssueCustomFieldContextsApi {
       {required String fieldId, required int contextId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/field/{fieldId}/context/{contextId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3519,7 +3519,7 @@ class IssueCustomFieldContextsApi {
       required IssueTypeIds body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/{contextId}/issuetype',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/issuetype',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3540,7 +3540,7 @@ class IssueCustomFieldContextsApi {
       required IssueTypeIds body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/field/{fieldId}/context/{contextId}/issuetype/remove',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/issuetype/remove',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3562,7 +3562,7 @@ class IssueCustomFieldContextsApi {
       required ProjectIds body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/{contextId}/project',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/project',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3589,7 +3589,7 @@ class IssueCustomFieldContextsApi {
       required ProjectIds body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/field/{fieldId}/context/{contextId}/project/remove',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/project/remove',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3628,7 +3628,7 @@ class IssueCustomFieldOptionsApi {
   Future<CustomFieldOption> getCustomFieldOption(String id) async {
     return CustomFieldOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/customFieldOption/{id}',
+      'rest/api/${ApiClient.API_VERSION}/customFieldOption/{id}',
       pathParameters: {
         'id': id,
       },
@@ -3656,7 +3656,7 @@ class IssueCustomFieldOptionsApi {
       int? maxResults}) async {
     return PageBeanCustomFieldContextOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/context/{contextId}/option',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/option',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3690,7 +3690,7 @@ class IssueCustomFieldOptionsApi {
       required BulkCustomFieldOptionUpdateRequest body}) async {
     return CustomFieldUpdatedContextOptionsList.fromJson(await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/{contextId}/option',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/option',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3720,7 +3720,7 @@ class IssueCustomFieldOptionsApi {
       required BulkCustomFieldOptionCreateRequest body}) async {
     return CustomFieldCreatedContextOptionsList.fromJson(await _client.send(
       'post',
-      'rest/api/3/field/{fieldId}/context/{contextId}/option',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/option',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3746,7 +3746,7 @@ class IssueCustomFieldOptionsApi {
       required OrderOfCustomFieldOptions body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}/context/{contextId}/option/move',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/option/move',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3774,7 +3774,7 @@ class IssueCustomFieldOptionsApi {
       required int optionId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/field/{fieldId}/context/{contextId}/option/{optionId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/context/{contextId}/option/{optionId}',
       pathParameters: {
         'fieldId': fieldId,
         'contextId': '$contextId',
@@ -3809,7 +3809,7 @@ class IssueCustomFieldOptionsAppsApi {
       {int? startAt, int? maxResults, required String fieldKey}) async {
     return PageBeanIssueFieldOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldKey}/option',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option',
       pathParameters: {
         'fieldKey': fieldKey,
       },
@@ -3836,7 +3836,7 @@ class IssueCustomFieldOptionsAppsApi {
       required IssueFieldOptionCreateBean body}) async {
     return IssueFieldOption.fromJson(await _client.send(
       'post',
-      'rest/api/3/field/{fieldKey}/option',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option',
       pathParameters: {
         'fieldKey': fieldKey,
       },
@@ -3861,7 +3861,7 @@ class IssueCustomFieldOptionsAppsApi {
       required String fieldKey}) async {
     return PageBeanIssueFieldOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldKey}/option/suggestions/edit',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/suggestions/edit',
       pathParameters: {
         'fieldKey': fieldKey,
       },
@@ -3890,7 +3890,7 @@ class IssueCustomFieldOptionsAppsApi {
       required String fieldKey}) async {
     return PageBeanIssueFieldOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldKey}/option/suggestions/search',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/suggestions/search',
       pathParameters: {
         'fieldKey': fieldKey,
       },
@@ -3917,7 +3917,7 @@ class IssueCustomFieldOptionsAppsApi {
       {required String fieldKey, required int optionId}) async {
     return IssueFieldOption.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldKey}/option/{optionId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/{optionId}',
       pathParameters: {
         'fieldKey': fieldKey,
         'optionId': '$optionId',
@@ -3945,7 +3945,7 @@ class IssueCustomFieldOptionsAppsApi {
       required IssueFieldOption body}) async {
     return IssueFieldOption.fromJson(await _client.send(
       'put',
-      'rest/api/3/field/{fieldKey}/option/{optionId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/{optionId}',
       pathParameters: {
         'fieldKey': fieldKey,
         'optionId': '$optionId',
@@ -3969,7 +3969,7 @@ class IssueCustomFieldOptionsAppsApi {
       {required String fieldKey, required int optionId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/field/{fieldKey}/option/{optionId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/{optionId}',
       pathParameters: {
         'fieldKey': fieldKey,
         'optionId': '$optionId',
@@ -4009,7 +4009,7 @@ class IssueCustomFieldOptionsAppsApi {
     return TaskProgressBeanRemoveOptionFromIssuesResult.fromJson(
         await _client.send(
       'delete',
-      'rest/api/3/field/{fieldKey}/option/{optionId}/issue',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldKey}/option/{optionId}/issue',
       pathParameters: {
         'fieldKey': fieldKey,
         'optionId': '$optionId',
@@ -4045,7 +4045,7 @@ class IssueCustomFieldValuesAppsApi {
       required MultipleCustomFieldValuesUpdateDetails body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/app/field/value',
+      'rest/api/${ApiClient.API_VERSION}/app/field/value',
       queryParameters: {
         if (generateChangelog != null)
           'generateChangelog': '$generateChangelog',
@@ -4065,7 +4065,7 @@ class IssueCustomFieldValuesAppsApi {
       required CustomFieldValueUpdateDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/app/field/{fieldIdOrKey}/value',
+      'rest/api/${ApiClient.API_VERSION}/app/field/{fieldIdOrKey}/value',
       pathParameters: {
         'fieldIdOrKey': fieldIdOrKey,
       },
@@ -4107,7 +4107,7 @@ class IssueFieldConfigurationsApi {
       String? query}) async {
     return PageBeanFieldConfigurationDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/fieldconfiguration',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4131,7 +4131,7 @@ class IssueFieldConfigurationsApi {
       {required FieldConfigurationDetails body}) async {
     return FieldConfiguration.fromJson(await _client.send(
       'post',
-      'rest/api/3/fieldconfiguration',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration',
       body: body.toJson(),
     ));
   }
@@ -4148,7 +4148,7 @@ class IssueFieldConfigurationsApi {
       {required int id, required FieldConfigurationDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/fieldconfiguration/{id}',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -4166,7 +4166,7 @@ class IssueFieldConfigurationsApi {
   Future<dynamic> deleteFieldConfiguration(int id) async {
     return await _client.send(
       'delete',
-      'rest/api/3/fieldconfiguration/{id}',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -4184,7 +4184,7 @@ class IssueFieldConfigurationsApi {
       {required int id, int? startAt, int? maxResults}) async {
     return PageBeanFieldConfigurationItem.fromJson(await _client.send(
       'get',
-      'rest/api/3/fieldconfiguration/{id}/fields',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration/{id}/fields',
       pathParameters: {
         'id': '$id',
       },
@@ -4212,7 +4212,7 @@ class IssueFieldConfigurationsApi {
       {required int id, required FieldConfigurationItemsDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/fieldconfiguration/{id}/fields',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfiguration/{id}/fields',
       pathParameters: {
         'id': '$id',
       },
@@ -4230,7 +4230,7 @@ class IssueFieldConfigurationsApi {
       {int? startAt, int? maxResults, List<int>? id}) async {
     return PageBeanFieldConfigurationScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/fieldconfigurationscheme',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4250,7 +4250,7 @@ class IssueFieldConfigurationsApi {
       {required UpdateFieldConfigurationSchemeDetails body}) async {
     return FieldConfigurationScheme.fromJson(await _client.send(
       'post',
-      'rest/api/3/fieldconfigurationscheme',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme',
       body: body.toJson(),
     ));
   }
@@ -4269,7 +4269,7 @@ class IssueFieldConfigurationsApi {
           List<int>? fieldConfigurationSchemeId}) async {
     return PageBeanFieldConfigurationIssueTypeItem.fromJson(await _client.send(
       'get',
-      'rest/api/3/fieldconfigurationscheme/mapping',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/mapping',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4296,7 +4296,7 @@ class IssueFieldConfigurationsApi {
           {int? startAt, int? maxResults, required List<int> projectId}) async {
     return PageBeanFieldConfigurationSchemeProjects.fromJson(await _client.send(
       'get',
-      'rest/api/3/fieldconfigurationscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/project',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4317,7 +4317,7 @@ class IssueFieldConfigurationsApi {
       {required FieldConfigurationSchemeProjectAssociation body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/fieldconfigurationscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/project',
       body: body.toJson(),
     );
   }
@@ -4334,7 +4334,7 @@ class IssueFieldConfigurationsApi {
       required UpdateFieldConfigurationSchemeDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/fieldconfigurationscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -4352,7 +4352,7 @@ class IssueFieldConfigurationsApi {
   Future<dynamic> deleteFieldConfigurationScheme(int id) async {
     return await _client.send(
       'delete',
-      'rest/api/3/fieldconfigurationscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -4371,7 +4371,7 @@ class IssueFieldConfigurationsApi {
       required AssociateFieldConfigurationsWithIssueTypesRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/fieldconfigurationscheme/{id}/mapping',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/{id}/mapping',
       pathParameters: {
         'id': '$id',
       },
@@ -4390,7 +4390,7 @@ class IssueFieldConfigurationsApi {
       {required int id, required IssueTypeIdsToRemove body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/fieldconfigurationscheme/{id}/mapping/delete',
+      'rest/api/${ApiClient.API_VERSION}/fieldconfigurationscheme/{id}/mapping/delete',
       pathParameters: {
         'id': '$id',
       },
@@ -4425,7 +4425,7 @@ class IssueFieldsApi {
   Future<List<FieldDetails>> getFields() async {
     return (await _client.send(
       'get',
-      'rest/api/3/field',
+      'rest/api/${ApiClient.API_VERSION}/field',
     ) as List<Object?>)
         .map((i) =>
             FieldDetails.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -4440,7 +4440,7 @@ class IssueFieldsApi {
       {required CustomFieldDefinitionJsonBean body}) async {
     return FieldDetails.fromJson(await _client.send(
       'post',
-      'rest/api/3/field',
+      'rest/api/${ApiClient.API_VERSION}/field',
       body: body.toJson(),
     ));
   }
@@ -4469,7 +4469,7 @@ class IssueFieldsApi {
       String? expand}) async {
     return PageBeanField.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/search',
+      'rest/api/${ApiClient.API_VERSION}/field/search',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4499,7 +4499,7 @@ class IssueFieldsApi {
       String? orderBy}) async {
     return PageBeanField.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/search/trashed',
+      'rest/api/${ApiClient.API_VERSION}/field/search/trashed',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -4519,7 +4519,7 @@ class IssueFieldsApi {
       {required String fieldId, required UpdateCustomFieldDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/field/{fieldId}',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -4538,7 +4538,7 @@ class IssueFieldsApi {
       {required String fieldId, int? startAt, int? maxResults}) async {
     return PageBeanContext.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/contexts',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/contexts',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -4563,7 +4563,7 @@ class IssueFieldsApi {
   Future<TaskProgressBeanObject> deleteCustomField(String id) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'delete',
-      'rest/api/3/field/{id}',
+      'rest/api/${ApiClient.API_VERSION}/field/{id}',
       pathParameters: {
         'id': id,
       },
@@ -4579,7 +4579,7 @@ class IssueFieldsApi {
   Future<dynamic> restoreCustomField(String id) async {
     return await _client.send(
       'post',
-      'rest/api/3/field/{id}/restore',
+      'rest/api/${ApiClient.API_VERSION}/field/{id}/restore',
       pathParameters: {
         'id': id,
       },
@@ -4595,7 +4595,7 @@ class IssueFieldsApi {
   Future<dynamic> trashCustomField(String id) async {
     return await _client.send(
       'post',
-      'rest/api/3/field/{id}/trash',
+      'rest/api/${ApiClient.API_VERSION}/field/{id}/trash',
       pathParameters: {
         'id': id,
       },
@@ -4623,7 +4623,7 @@ class IssueLinkTypesApi {
   Future<IssueLinkTypes> getIssueLinkTypes() async {
     return IssueLinkTypes.fromJson(await _client.send(
       'get',
-      'rest/api/3/issueLinkType',
+      'rest/api/${ApiClient.API_VERSION}/issueLinkType',
     ));
   }
 
@@ -4640,7 +4640,7 @@ class IssueLinkTypesApi {
       {required IssueLinkType body}) async {
     return IssueLinkType.fromJson(await _client.send(
       'post',
-      'rest/api/3/issueLinkType',
+      'rest/api/${ApiClient.API_VERSION}/issueLinkType',
       body: body.toJson(),
     ));
   }
@@ -4658,7 +4658,7 @@ class IssueLinkTypesApi {
   Future<IssueLinkType> getIssueLinkType(String issueLinkTypeId) async {
     return IssueLinkType.fromJson(await _client.send(
       'get',
-      'rest/api/3/issueLinkType/{issueLinkTypeId}',
+      'rest/api/${ApiClient.API_VERSION}/issueLinkType/{issueLinkTypeId}',
       pathParameters: {
         'issueLinkTypeId': issueLinkTypeId,
       },
@@ -4676,7 +4676,7 @@ class IssueLinkTypesApi {
       {required String issueLinkTypeId, required IssueLinkType body}) async {
     return IssueLinkType.fromJson(await _client.send(
       'put',
-      'rest/api/3/issueLinkType/{issueLinkTypeId}',
+      'rest/api/${ApiClient.API_VERSION}/issueLinkType/{issueLinkTypeId}',
       pathParameters: {
         'issueLinkTypeId': issueLinkTypeId,
       },
@@ -4694,7 +4694,7 @@ class IssueLinkTypesApi {
   Future<void> deleteIssueLinkType(String issueLinkTypeId) async {
     await _client.send(
       'delete',
-      'rest/api/3/issueLinkType/{issueLinkTypeId}',
+      'rest/api/${ApiClient.API_VERSION}/issueLinkType/{issueLinkTypeId}',
       pathParameters: {
         'issueLinkTypeId': issueLinkTypeId,
       },
@@ -4716,7 +4716,7 @@ class IssueLinksApi {
   ///
   /// This resource returns nothing on the creation of an issue link. To obtain
   /// the ID of the issue link, use
-  /// `https://your-domain.atlassian.net/rest/api/3/issue/[linked issue key]?fields=issuelinks`.
+  /// `https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/issue/[linked issue key]?fields=issuelinks`.
   ///
   /// If the link request duplicates a link, the response indicates that the
   /// issue link was created. If the request included a comment, the comment is
@@ -4739,7 +4739,7 @@ class IssueLinksApi {
   Future<dynamic> linkIssues({required LinkIssueRequestJsonBean body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issueLink',
+      'rest/api/${ApiClient.API_VERSION}/issueLink',
       body: body.toJson(),
     );
   }
@@ -4758,7 +4758,7 @@ class IssueLinksApi {
   Future<IssueLink> getIssueLink(String linkId) async {
     return IssueLink.fromJson(await _client.send(
       'get',
-      'rest/api/3/issueLink/{linkId}',
+      'rest/api/${ApiClient.API_VERSION}/issueLink/{linkId}',
       pathParameters: {
         'linkId': linkId,
       },
@@ -4782,7 +4782,7 @@ class IssueLinksApi {
   Future<void> deleteIssueLink(String linkId) async {
     await _client.send(
       'delete',
-      'rest/api/3/issueLink/{linkId}',
+      'rest/api/${ApiClient.API_VERSION}/issueLink/{linkId}',
       pathParameters: {
         'linkId': linkId,
       },
@@ -4804,7 +4804,7 @@ class IssueNavigatorSettingsApi {
   Future<List<ColumnItem>> getIssueNavigatorDefaultColumns() async {
     return (await _client.send(
       'get',
-      'rest/api/3/settings/columns',
+      'rest/api/${ApiClient.API_VERSION}/settings/columns',
     ) as List<Object?>)
         .map((i) => ColumnItem.fromJson(i as Map<String, Object?>? ?? const {}))
         .toList();
@@ -4817,7 +4817,7 @@ class IssueNavigatorSettingsApi {
   /// parameters. For example, in curl:
   ///
   /// `curl -X PUT -d columns=summary -d columns=description
-  /// https://your-domain.atlassian.net/rest/api/3/settings/columns`
+  /// https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/settings/columns`
   ///
   /// If no column details are sent, then all default columns are removed.
   ///
@@ -4831,7 +4831,7 @@ class IssueNavigatorSettingsApi {
       {required List<String> body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/settings/columns',
+      'rest/api/${ApiClient.API_VERSION}/settings/columns',
       body: body,
     );
   }
@@ -4863,7 +4863,7 @@ class IssueNotificationSchemesApi {
       String? expand}) async {
     return PageBeanNotificationScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/notificationscheme',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -4884,7 +4884,7 @@ class IssueNotificationSchemesApi {
       {required CreateNotificationSchemeDetails body}) async {
     return NotificationSchemeId.fromJson(await _client.send(
       'post',
-      'rest/api/3/notificationscheme',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme',
       body: body.toJson(),
     ));
   }
@@ -4907,7 +4907,7 @@ class IssueNotificationSchemesApi {
     return PageBeanNotificationSchemeAndProjectMappingJsonBean.fromJson(
         await _client.send(
       'get',
-      'rest/api/3/notificationscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/project',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -4930,7 +4930,7 @@ class IssueNotificationSchemesApi {
       {required int id, String? expand}) async {
     return NotificationScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/notificationscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -4949,7 +4949,7 @@ class IssueNotificationSchemesApi {
       required UpdateNotificationSchemeDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/notificationscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/{id}',
       pathParameters: {
         'id': id,
       },
@@ -4971,7 +4971,7 @@ class IssueNotificationSchemesApi {
       {required String id, required AddNotificationsDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/notificationscheme/{id}/notification',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/{id}/notification',
       pathParameters: {
         'id': id,
       },
@@ -4986,7 +4986,7 @@ class IssueNotificationSchemesApi {
   Future<dynamic> deleteNotificationScheme(String notificationSchemeId) async {
     return await _client.send(
       'delete',
-      'rest/api/3/notificationscheme/{notificationSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/{notificationSchemeId}',
       pathParameters: {
         'notificationSchemeId': notificationSchemeId,
       },
@@ -5002,7 +5002,7 @@ class IssueNotificationSchemesApi {
       required String notificationId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/notificationscheme/{notificationSchemeId}/notification/{notificationId}',
+      'rest/api/${ApiClient.API_VERSION}/notificationscheme/{notificationSchemeId}/notification/{notificationId}',
       pathParameters: {
         'notificationSchemeId': notificationSchemeId,
         'notificationId': notificationId,
@@ -5025,7 +5025,7 @@ class IssuePrioritiesApi {
   Future<List<Priority>> getPriorities() async {
     return (await _client.send(
       'get',
-      'rest/api/3/priority',
+      'rest/api/${ApiClient.API_VERSION}/priority',
     ) as List<Object?>)
         .map((i) => Priority.fromJson(i as Map<String, Object?>? ?? const {}))
         .toList();
@@ -5039,7 +5039,7 @@ class IssuePrioritiesApi {
       {required CreatePriorityDetails body}) async {
     return PriorityId.fromJson(await _client.send(
       'post',
-      'rest/api/3/priority',
+      'rest/api/${ApiClient.API_VERSION}/priority',
       body: body.toJson(),
     ));
   }
@@ -5052,7 +5052,7 @@ class IssuePrioritiesApi {
       {required SetDefaultPriorityRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/priority/default',
+      'rest/api/${ApiClient.API_VERSION}/priority/default',
       body: body.toJson(),
     );
   }
@@ -5064,7 +5064,7 @@ class IssuePrioritiesApi {
   Future<dynamic> movePriorities({required ReorderIssuePriorities body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/priority/move',
+      'rest/api/${ApiClient.API_VERSION}/priority/move',
       body: body.toJson(),
     );
   }
@@ -5089,7 +5089,7 @@ class IssuePrioritiesApi {
       bool? onlyDefault}) async {
     return PageBeanPriority.fromJson(await _client.send(
       'get',
-      'rest/api/3/priority/search',
+      'rest/api/${ApiClient.API_VERSION}/priority/search',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -5106,7 +5106,7 @@ class IssuePrioritiesApi {
   Future<Priority> getPriority(String id) async {
     return Priority.fromJson(await _client.send(
       'get',
-      'rest/api/3/priority/{id}',
+      'rest/api/${ApiClient.API_VERSION}/priority/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5121,7 +5121,7 @@ class IssuePrioritiesApi {
       {required String id, required UpdatePriorityDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/priority/{id}',
+      'rest/api/${ApiClient.API_VERSION}/priority/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5146,7 +5146,7 @@ class IssuePrioritiesApi {
       {required String id, required String replaceWith}) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'delete',
-      'rest/api/3/priority/{id}',
+      'rest/api/${ApiClient.API_VERSION}/priority/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5192,7 +5192,7 @@ class IssuePropertiesApi {
       {required IssueEntityProperties body}) async {
     await _client.send(
       'post',
-      'rest/api/3/issue/properties',
+      'rest/api/${ApiClient.API_VERSION}/issue/properties',
       body: body.toJson(),
     );
   }
@@ -5223,7 +5223,7 @@ class IssuePropertiesApi {
       {required MultiIssueEntityProperties body}) async {
     await _client.send(
       'post',
-      'rest/api/3/issue/properties/multi',
+      'rest/api/${ApiClient.API_VERSION}/issue/properties/multi',
       body: body.toJson(),
     );
   }
@@ -5284,7 +5284,7 @@ class IssuePropertiesApi {
       required BulkIssuePropertyUpdateRequest body}) async {
     await _client.send(
       'put',
-      'rest/api/3/issue/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/properties/{propertyKey}',
       pathParameters: {
         'propertyKey': propertyKey,
       },
@@ -5331,7 +5331,7 @@ class IssuePropertiesApi {
       required IssueFilterForBulkPropertyDelete body}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/properties/{propertyKey}',
       pathParameters: {
         'propertyKey': propertyKey,
       },
@@ -5354,7 +5354,7 @@ class IssuePropertiesApi {
   Future<PropertyKeys> getIssuePropertyKeys(String issueIdOrKey) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/properties',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/properties',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -5376,7 +5376,7 @@ class IssuePropertiesApi {
       {required String issueIdOrKey, required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'propertyKey': propertyKey,
@@ -5406,7 +5406,7 @@ class IssuePropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'propertyKey': propertyKey,
@@ -5430,7 +5430,7 @@ class IssuePropertiesApi {
       {required String issueIdOrKey, required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'propertyKey': propertyKey,
@@ -5469,7 +5469,7 @@ class IssueRemoteLinksApi {
       {required String issueIdOrKey, String? globalId}) async {
     return RemoteIssueLink.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -5502,7 +5502,7 @@ class IssueRemoteLinksApi {
       required RemoteIssueLinkRequest body}) async {
     return RemoteIssueLinkIdentifies.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -5532,7 +5532,7 @@ class IssueRemoteLinksApi {
       {required String issueIdOrKey, required String globalId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -5560,7 +5560,7 @@ class IssueRemoteLinksApi {
       {required String issueIdOrKey, required String linkId}) async {
     return RemoteIssueLink.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink/{linkId}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'linkId': linkId,
@@ -5590,7 +5590,7 @@ class IssueRemoteLinksApi {
       required RemoteIssueLinkRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink/{linkId}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'linkId': linkId,
@@ -5617,7 +5617,7 @@ class IssueRemoteLinksApi {
       {required String issueIdOrKey, required String linkId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/remotelink/{linkId}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'linkId': linkId,
@@ -5640,7 +5640,7 @@ class IssueResolutionsApi {
   Future<List<Resolution>> getResolutions() async {
     return (await _client.send(
       'get',
-      'rest/api/3/resolution',
+      'rest/api/${ApiClient.API_VERSION}/resolution',
     ) as List<Object?>)
         .map((i) => Resolution.fromJson(i as Map<String, Object?>? ?? const {}))
         .toList();
@@ -5654,7 +5654,7 @@ class IssueResolutionsApi {
       {required CreateResolutionDetails body}) async {
     return ResolutionId.fromJson(await _client.send(
       'post',
-      'rest/api/3/resolution',
+      'rest/api/${ApiClient.API_VERSION}/resolution',
       body: body.toJson(),
     ));
   }
@@ -5667,7 +5667,7 @@ class IssueResolutionsApi {
       {required SetDefaultResolutionRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/resolution/default',
+      'rest/api/${ApiClient.API_VERSION}/resolution/default',
       body: body.toJson(),
     );
   }
@@ -5680,7 +5680,7 @@ class IssueResolutionsApi {
       {required ReorderIssueResolutionsRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/resolution/move',
+      'rest/api/${ApiClient.API_VERSION}/resolution/move',
       body: body.toJson(),
     );
   }
@@ -5702,7 +5702,7 @@ class IssueResolutionsApi {
       bool? onlyDefault}) async {
     return PageBeanResolutionJsonBean.fromJson(await _client.send(
       'get',
-      'rest/api/3/resolution/search',
+      'rest/api/${ApiClient.API_VERSION}/resolution/search',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -5718,7 +5718,7 @@ class IssueResolutionsApi {
   Future<Resolution> getResolution(String id) async {
     return Resolution.fromJson(await _client.send(
       'get',
-      'rest/api/3/resolution/{id}',
+      'rest/api/${ApiClient.API_VERSION}/resolution/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5733,7 +5733,7 @@ class IssueResolutionsApi {
       {required String id, required UpdateResolutionDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/resolution/{id}',
+      'rest/api/${ApiClient.API_VERSION}/resolution/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5753,7 +5753,7 @@ class IssueResolutionsApi {
       {required String id, required String replaceWith}) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'delete',
-      'rest/api/3/resolution/{id}',
+      'rest/api/${ApiClient.API_VERSION}/resolution/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5795,7 +5795,7 @@ class IssueSearchApi {
       bool? showSubTaskParent}) async {
     return IssuePickerSuggestions.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/picker',
+      'rest/api/${ApiClient.API_VERSION}/issue/picker',
       queryParameters: {
         if (query != null) 'query': query,
         if (currentJql != null) 'currentJQL': currentJql,
@@ -5822,7 +5822,7 @@ class IssueSearchApi {
   Future<IssueMatches> matchIssues({required IssuesAndJQLQueries body}) async {
     return IssueMatches.fromJson(await _client.send(
       'post',
-      'rest/api/3/jql/match',
+      'rest/api/${ApiClient.API_VERSION}/jql/match',
       body: body.toJson(),
     ));
   }
@@ -5855,7 +5855,7 @@ class IssueSearchApi {
       bool? fieldsByKeys}) async {
     return SearchResults.fromJson(await _client.send(
       'get',
-      'rest/api/3/search',
+      'rest/api/${ApiClient.API_VERSION}/search',
       queryParameters: {
         if (jql != null) 'jql': jql,
         if (startAt != null) 'startAt': '$startAt',
@@ -5890,7 +5890,7 @@ class IssueSearchApi {
       {required SearchRequestBean body}) async {
     return SearchResults.fromJson(await _client.send(
       'post',
-      'rest/api/3/search',
+      'rest/api/${ApiClient.API_VERSION}/search',
       body: body.toJson(),
     ));
   }
@@ -5918,7 +5918,7 @@ class IssueSecurityLevelApi {
       String? expand}) async {
     return PageBeanIssueSecurityLevelMember.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/{issueSecuritySchemeId}/members',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{issueSecuritySchemeId}/members',
       pathParameters: {
         'issueSecuritySchemeId': '$issueSecuritySchemeId',
       },
@@ -5946,7 +5946,7 @@ class IssueSecurityLevelApi {
   Future<SecurityLevel> getIssueSecurityLevel(String id) async {
     return SecurityLevel.fromJson(await _client.send(
       'get',
-      'rest/api/3/securitylevel/{id}',
+      'rest/api/${ApiClient.API_VERSION}/securitylevel/{id}',
       pathParameters: {
         'id': id,
       },
@@ -5969,7 +5969,7 @@ class IssueSecuritySchemesApi {
   Future<SecuritySchemes> getIssueSecuritySchemes() async {
     return SecuritySchemes.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes',
     ));
   }
 
@@ -5983,7 +5983,7 @@ class IssueSecuritySchemesApi {
       {required CreateIssueSecuritySchemeDetails body}) async {
     return SecuritySchemeId.fromJson(await _client.send(
       'post',
-      'rest/api/3/issuesecurityschemes',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes',
       body: body.toJson(),
     ));
   }
@@ -6007,7 +6007,7 @@ class IssueSecuritySchemesApi {
       bool? onlyDefault}) async {
     return PageBeanSecurityLevel.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/level',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/level',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -6026,7 +6026,7 @@ class IssueSecuritySchemesApi {
       {required SetDefaultLevelsRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/level/default',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/level/default',
       body: body.toJson(),
     );
   }
@@ -6051,7 +6051,7 @@ class IssueSecuritySchemesApi {
       String? expand}) async {
     return PageBeanSecurityLevelMember.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/level/member',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/level/member',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -6079,7 +6079,7 @@ class IssueSecuritySchemesApi {
     return PageBeanIssueSecuritySchemeToProjectMapping.fromJson(
         await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/project',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/project',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -6104,7 +6104,7 @@ class IssueSecuritySchemesApi {
       {required AssociateSecuritySchemeWithProjectDetails body}) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/project',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/project',
       body: body.toJson(),
     ));
   }
@@ -6127,7 +6127,7 @@ class IssueSecuritySchemesApi {
       List<String>? projectId}) async {
     return PageBeanSecuritySchemeWithProjects.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/search',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/search',
       queryParameters: {
         if (startAt != null) 'startAt': startAt,
         if (maxResults != null) 'maxResults': maxResults,
@@ -6149,7 +6149,7 @@ class IssueSecuritySchemesApi {
   Future<SecurityScheme> getIssueSecurityScheme(int id) async {
     return SecurityScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuesecurityschemes/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -6165,7 +6165,7 @@ class IssueSecuritySchemesApi {
       required UpdateIssueSecuritySchemeRequestBean body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{id}',
       pathParameters: {
         'id': id,
       },
@@ -6180,7 +6180,7 @@ class IssueSecuritySchemesApi {
   Future<dynamic> deleteSecurityScheme(String schemeId) async {
     return await _client.send(
       'delete',
-      'rest/api/3/issuesecurityschemes/{schemeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}',
       pathParameters: {
         'schemeId': schemeId,
       },
@@ -6197,7 +6197,7 @@ class IssueSecuritySchemesApi {
       required AddSecuritySchemeLevelsRequestBean body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/{schemeId}/level',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}/level',
       pathParameters: {
         'schemeId': schemeId,
       },
@@ -6215,7 +6215,7 @@ class IssueSecuritySchemesApi {
       required UpdateIssueSecurityLevelDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/{schemeId}/level/{levelId}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}/level/{levelId}',
       pathParameters: {
         'schemeId': schemeId,
         'levelId': levelId,
@@ -6238,7 +6238,7 @@ class IssueSecuritySchemesApi {
       String? replaceWith}) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'delete',
-      'rest/api/3/issuesecurityschemes/{schemeId}/level/{levelId}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}/level/{levelId}',
       pathParameters: {
         'schemeId': schemeId,
         'levelId': levelId,
@@ -6260,7 +6260,7 @@ class IssueSecuritySchemesApi {
       required SecuritySchemeMembersRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuesecurityschemes/{schemeId}/level/{levelId}/member',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}/level/{levelId}/member',
       pathParameters: {
         'schemeId': schemeId,
         'levelId': levelId,
@@ -6279,7 +6279,7 @@ class IssueSecuritySchemesApi {
       required String memberId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/issuesecurityschemes/{schemeId}/level/{levelId}/member/{memberId}',
+      'rest/api/${ApiClient.API_VERSION}/issuesecurityschemes/{schemeId}/level/{levelId}/member/{memberId}',
       pathParameters: {
         'schemeId': schemeId,
         'levelId': levelId,
@@ -6314,7 +6314,7 @@ class IssueTypePropertiesApi {
   Future<PropertyKeys> getIssueTypePropertyKeys(String issueTypeId) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetype/{issueTypeId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{issueTypeId}/properties',
       pathParameters: {
         'issueTypeId': issueTypeId,
       },
@@ -6339,7 +6339,7 @@ class IssueTypePropertiesApi {
       {required String issueTypeId, required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetype/{issueTypeId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{issueTypeId}/properties/{propertyKey}',
       pathParameters: {
         'issueTypeId': issueTypeId,
         'propertyKey': propertyKey,
@@ -6363,7 +6363,7 @@ class IssueTypePropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetype/{issueTypeId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{issueTypeId}/properties/{propertyKey}',
       pathParameters: {
         'issueTypeId': issueTypeId,
         'propertyKey': propertyKey,
@@ -6381,7 +6381,7 @@ class IssueTypePropertiesApi {
       {required String issueTypeId, required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issuetype/{issueTypeId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{issueTypeId}/properties/{propertyKey}',
       pathParameters: {
         'issueTypeId': issueTypeId,
         'propertyKey': propertyKey,
@@ -6412,7 +6412,7 @@ class IssueTypeSchemesApi {
       String? queryString}) async {
     return PageBeanIssueTypeScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescheme',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6432,7 +6432,7 @@ class IssueTypeSchemesApi {
       {required IssueTypeSchemeDetails body}) async {
     return IssueTypeSchemeID.fromJson(await _client.send(
       'post',
-      'rest/api/3/issuetypescheme',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme',
       body: body.toJson(),
     ));
   }
@@ -6447,7 +6447,7 @@ class IssueTypeSchemesApi {
       {int? startAt, int? maxResults, List<int>? issueTypeSchemeId}) async {
     return PageBeanIssueTypeSchemeMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescheme/mapping',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/mapping',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6468,7 +6468,7 @@ class IssueTypeSchemesApi {
       {int? startAt, int? maxResults, required List<int> projectId}) async {
     return PageBeanIssueTypeSchemeProjects.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescheme/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/project',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6491,7 +6491,7 @@ class IssueTypeSchemesApi {
       {required IssueTypeSchemeProjectAssociation body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescheme/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/project',
       body: body.toJson(),
     );
   }
@@ -6505,7 +6505,7 @@ class IssueTypeSchemesApi {
       required IssueTypeSchemeUpdateDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescheme/{issueTypeSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/{issueTypeSchemeId}',
       pathParameters: {
         'issueTypeSchemeId': '$issueTypeSchemeId',
       },
@@ -6525,7 +6525,7 @@ class IssueTypeSchemesApi {
   Future<dynamic> deleteIssueTypeScheme(int issueTypeSchemeId) async {
     return await _client.send(
       'delete',
-      'rest/api/3/issuetypescheme/{issueTypeSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/{issueTypeSchemeId}',
       pathParameters: {
         'issueTypeSchemeId': '$issueTypeSchemeId',
       },
@@ -6545,7 +6545,7 @@ class IssueTypeSchemesApi {
       {required int issueTypeSchemeId, required IssueTypeIds body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescheme/{issueTypeSchemeId}/issuetype',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/{issueTypeSchemeId}/issuetype',
       pathParameters: {
         'issueTypeSchemeId': '$issueTypeSchemeId',
       },
@@ -6567,7 +6567,7 @@ class IssueTypeSchemesApi {
       {required int issueTypeSchemeId, required OrderOfIssueTypes body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescheme/{issueTypeSchemeId}/issuetype/move',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/{issueTypeSchemeId}/issuetype/move',
       pathParameters: {
         'issueTypeSchemeId': '$issueTypeSchemeId',
       },
@@ -6589,7 +6589,7 @@ class IssueTypeSchemesApi {
       {required int issueTypeSchemeId, required int issueTypeId}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/issuetypescheme/{issueTypeSchemeId}/issuetype/{issueTypeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescheme/{issueTypeSchemeId}/issuetype/{issueTypeId}',
       pathParameters: {
         'issueTypeSchemeId': '$issueTypeSchemeId',
         'issueTypeId': '$issueTypeId',
@@ -6620,7 +6620,7 @@ class IssueTypeScreenSchemesApi {
       String? expand}) async {
     return PageBeanIssueTypeScreenScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescreenscheme',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6640,7 +6640,7 @@ class IssueTypeScreenSchemesApi {
       {required IssueTypeScreenSchemeDetails body}) async {
     return IssueTypeScreenSchemeId.fromJson(await _client.send(
       'post',
-      'rest/api/3/issuetypescreenscheme',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme',
       body: body.toJson(),
     ));
   }
@@ -6657,7 +6657,7 @@ class IssueTypeScreenSchemesApi {
       List<int>? issueTypeScreenSchemeId}) async {
     return PageBeanIssueTypeScreenSchemeItem.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescreenscheme/mapping',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/mapping',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6680,7 +6680,7 @@ class IssueTypeScreenSchemesApi {
           {int? startAt, int? maxResults, required List<int> projectId}) async {
     return PageBeanIssueTypeScreenSchemesProjects.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescreenscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/project',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -6699,7 +6699,7 @@ class IssueTypeScreenSchemesApi {
       {required IssueTypeScreenSchemeProjectAssociation body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescreenscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/project',
       body: body.toJson(),
     );
   }
@@ -6713,7 +6713,7 @@ class IssueTypeScreenSchemesApi {
       required IssueTypeScreenSchemeUpdateDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}',
       pathParameters: {
         'issueTypeScreenSchemeId': issueTypeScreenSchemeId,
       },
@@ -6729,7 +6729,7 @@ class IssueTypeScreenSchemesApi {
       String issueTypeScreenSchemeId) async {
     return await _client.send(
       'delete',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}',
       pathParameters: {
         'issueTypeScreenSchemeId': issueTypeScreenSchemeId,
       },
@@ -6746,7 +6746,7 @@ class IssueTypeScreenSchemesApi {
       required IssueTypeScreenSchemeMappingDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping',
       pathParameters: {
         'issueTypeScreenSchemeId': issueTypeScreenSchemeId,
       },
@@ -6764,7 +6764,7 @@ class IssueTypeScreenSchemesApi {
       required UpdateDefaultScreenScheme body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping/default',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping/default',
       pathParameters: {
         'issueTypeScreenSchemeId': issueTypeScreenSchemeId,
       },
@@ -6782,7 +6782,7 @@ class IssueTypeScreenSchemesApi {
       required IssueTypeIds body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping/remove',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}/mapping/remove',
       pathParameters: {
         'issueTypeScreenSchemeId': issueTypeScreenSchemeId,
       },
@@ -6805,7 +6805,7 @@ class IssueTypeScreenSchemesApi {
       String? query}) async {
     return PageBeanProjectDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetypescreenscheme/{issueTypeScreenSchemeId}/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetypescreenscheme/{issueTypeScreenSchemeId}/project',
       pathParameters: {
         'issueTypeScreenSchemeId': '$issueTypeScreenSchemeId',
       },
@@ -6842,7 +6842,7 @@ class IssueTypesApi {
   Future<List<IssueTypeDetails>> getIssueAllTypes() async {
     return (await _client.send(
       'get',
-      'rest/api/3/issuetype',
+      'rest/api/${ApiClient.API_VERSION}/issuetype',
     ) as List<Object?>)
         .map((i) =>
             IssueTypeDetails.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -6857,7 +6857,7 @@ class IssueTypesApi {
       {required IssueTypeCreateBean body}) async {
     return IssueTypeDetails.fromJson(await _client.send(
       'post',
-      'rest/api/3/issuetype',
+      'rest/api/${ApiClient.API_VERSION}/issuetype',
       body: body.toJson(),
     ));
   }
@@ -6874,7 +6874,7 @@ class IssueTypesApi {
       {required int projectId, int? level}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/issuetype/project',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/project',
       queryParameters: {
         'projectId': '$projectId',
         if (level != null) 'level': '$level',
@@ -6896,7 +6896,7 @@ class IssueTypesApi {
   Future<IssueTypeDetails> getIssueType(String id) async {
     return IssueTypeDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/issuetype/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{id}',
       pathParameters: {
         'id': id,
       },
@@ -6911,7 +6911,7 @@ class IssueTypesApi {
       {required String id, required IssueTypeUpdateBean body}) async {
     return IssueTypeDetails.fromJson(await _client.send(
       'put',
-      'rest/api/3/issuetype/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{id}',
       pathParameters: {
         'id': id,
       },
@@ -6931,7 +6931,7 @@ class IssueTypesApi {
       {required String id, String? alternativeIssueTypeId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issuetype/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{id}',
       pathParameters: {
         'id': id,
       },
@@ -6952,7 +6952,7 @@ class IssueTypesApi {
   Future<List<IssueTypeDetails>> getAlternativeIssueTypes(String id) async {
     return (await _client.send(
       'get',
-      'rest/api/3/issuetype/{id}/alternatives',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{id}/alternatives',
       pathParameters: {
         'id': id,
       },
@@ -6977,7 +6977,7 @@ class IssueTypesApi {
   /// `curl --request POST  --user email@example.com:<api_token>  --header
   /// 'X-Atlassian-Token: no-check'  --header 'Content-Type: image/<
   /// image_type>'  --data-binary "<@/path/to/file/with/your/avatar>"  --url
-  /// 'https://your-domain.atlassian.net/rest/api/3/issuetype/{issueTypeId}'This`
+  /// 'https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/issuetype/{issueTypeId}'This`
   ///
   /// The avatar is cropped to a square. If no crop parameters are specified,
   /// the square originates at the top left of the image. The length of the
@@ -7000,7 +7000,7 @@ class IssueTypesApi {
       required dynamic body}) async {
     return Avatar.fromJson(await _client.send(
       'post',
-      'rest/api/3/issuetype/{id}/avatar2',
+      'rest/api/${ApiClient.API_VERSION}/issuetype/{id}/avatar2',
       pathParameters: {
         'id': id,
       },
@@ -7044,7 +7044,7 @@ class IssueVotesApi {
   Future<Votes> getVotes(String issueIdOrKey) async {
     return Votes.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/votes',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/votes',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7069,7 +7069,7 @@ class IssueVotesApi {
   Future<dynamic> addVote(String issueIdOrKey) async {
     return await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/votes',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/votes',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7094,7 +7094,7 @@ class IssueVotesApi {
   Future<void> removeVote(String issueIdOrKey) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/votes',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/votes',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7128,7 +7128,7 @@ class IssueWatchersApi {
       {required IssueList body}) async {
     return BulkIssueIsWatching.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/watching',
+      'rest/api/${ApiClient.API_VERSION}/issue/watching',
       body: body.toJson(),
     ));
   }
@@ -7156,7 +7156,7 @@ class IssueWatchersApi {
   Future<Watchers> getIssueWatchers(String issueIdOrKey) async {
     return Watchers.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/watchers',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/watchers',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7186,7 +7186,7 @@ class IssueWatchersApi {
       {required String issueIdOrKey, required String body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/watchers',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/watchers',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7218,7 +7218,7 @@ class IssueWatchersApi {
       String? accountId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/watchers',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/watchers',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7254,7 +7254,7 @@ class IssueWorklogPropertiesApi {
       {required String issueIdOrKey, required String worklogId}) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{worklogId}/properties',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'worklogId': worklogId,
@@ -7281,7 +7281,7 @@ class IssueWorklogPropertiesApi {
       required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'worklogId': worklogId,
@@ -7319,7 +7319,7 @@ class IssueWorklogPropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'worklogId': worklogId,
@@ -7348,7 +7348,7 @@ class IssueWorklogPropertiesApi {
       required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'worklogId': worklogId,
@@ -7393,7 +7393,7 @@ class IssueWorklogsApi {
       String? expand}) async {
     return PageOfWorklogs.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/worklog',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7433,7 +7433,7 @@ class IssueWorklogsApi {
       required Worklog body}) async {
     return Worklog.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/worklog',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7473,7 +7473,7 @@ class IssueWorklogsApi {
       String? expand}) async {
     return Worklog.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -7516,7 +7516,7 @@ class IssueWorklogsApi {
       required Worklog body}) async {
     return Worklog.fromJson(await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -7564,7 +7564,7 @@ class IssueWorklogsApi {
       bool? overrideEditableFlag}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}/worklog/{id}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/worklog/{id}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
         'id': id,
@@ -7597,7 +7597,7 @@ class IssueWorklogsApi {
   Future<ChangedWorklogs> getIdsOfWorklogsDeletedSince({int? since}) async {
     return ChangedWorklogs.fromJson(await _client.send(
       'get',
-      'rest/api/3/worklog/deleted',
+      'rest/api/${ApiClient.API_VERSION}/worklog/deleted',
       queryParameters: {
         if (since != null) 'since': '$since',
       },
@@ -7618,7 +7618,7 @@ class IssueWorklogsApi {
       {String? expand, required WorklogIdsRequestBean body}) async {
     return (await _client.send(
       'post',
-      'rest/api/3/worklog/list',
+      'rest/api/${ApiClient.API_VERSION}/worklog/list',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -7651,7 +7651,7 @@ class IssueWorklogsApi {
       {int? since, String? expand}) async {
     return ChangedWorklogs.fromJson(await _client.send(
       'get',
-      'rest/api/3/worklog/updated',
+      'rest/api/${ApiClient.API_VERSION}/worklog/updated',
       queryParameters: {
         if (since != null) 'since': '$since',
         if (expand != null) 'expand': expand,
@@ -7674,7 +7674,7 @@ class IssuesApi {
   Future<List<IssueEvent>> getEvents() async {
     return (await _client.send(
       'get',
-      'rest/api/3/events',
+      'rest/api/${ApiClient.API_VERSION}/events',
     ) as List<Object?>)
         .map((i) => IssueEvent.fromJson(i as Map<String, Object?>? ?? const {}))
         .toList();
@@ -7712,7 +7712,7 @@ class IssuesApi {
       {bool? updateHistory, required IssueUpdateDetails body}) async {
     return CreatedIssue.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue',
+      'rest/api/${ApiClient.API_VERSION}/issue',
       queryParameters: {
         if (updateHistory != null) 'updateHistory': '$updateHistory',
       },
@@ -7742,7 +7742,7 @@ class IssuesApi {
       {required IssueArchivalSyncRequest body}) async {
     return IssueArchivalSyncResponse.fromJson(await _client.send(
       'put',
-      'rest/api/3/issue/archive',
+      'rest/api/${ApiClient.API_VERSION}/issue/archive',
       body: body.toJson(),
     ));
   }
@@ -7777,7 +7777,7 @@ class IssuesApi {
       {required ArchiveIssueAsyncRequest body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issue/archive',
+      'rest/api/${ApiClient.API_VERSION}/issue/archive',
       body: body.toJson(),
     ) as String;
   }
@@ -7810,7 +7810,7 @@ class IssuesApi {
   Future<CreatedIssues> createIssues({required IssuesUpdateBean body}) async {
     return CreatedIssues.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/bulk',
+      'rest/api/${ApiClient.API_VERSION}/issue/bulk',
       body: body.toJson(),
     ));
   }
@@ -7840,7 +7840,7 @@ class IssuesApi {
       String? expand}) async {
     return IssueCreateMetadata.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/createmeta',
+      'rest/api/${ApiClient.API_VERSION}/issue/createmeta',
       queryParameters: {
         if (projectIds != null)
           'projectIds': projectIds.map((e) => e).join(','),
@@ -7878,7 +7878,7 @@ class IssuesApi {
       {required IssueArchivalSyncRequest body}) async {
     return IssueArchivalSyncResponse.fromJson(await _client.send(
       'put',
-      'rest/api/3/issue/unarchive',
+      'rest/api/${ApiClient.API_VERSION}/issue/unarchive',
       body: body.toJson(),
     ));
   }
@@ -7909,7 +7909,7 @@ class IssuesApi {
       bool? updateHistory}) async {
     return IssueBean.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7962,7 +7962,7 @@ class IssuesApi {
       required IssueUpdateDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -7996,7 +7996,7 @@ class IssuesApi {
       {required String issueIdOrKey, String? deleteSubtasks}) async {
     await _client.send(
       'delete',
-      'rest/api/3/issue/{issueIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8028,7 +8028,7 @@ class IssuesApi {
       {required String issueIdOrKey, required User body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/issue/{issueIdOrKey}/assignee',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/assignee',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8052,7 +8052,7 @@ class IssuesApi {
       {required String issueIdOrKey, int? startAt, int? maxResults}) async {
     return PageBeanChangelog.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/changelog',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/changelog',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8078,7 +8078,7 @@ class IssuesApi {
       {required String issueIdOrKey, required IssueChangelogIds body}) async {
     return PageOfChangelogs.fromJson(await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/changelog/list',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/changelog/list',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8155,7 +8155,7 @@ class IssuesApi {
       bool? overrideEditableFlag}) async {
     return IssueUpdateMetadata.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/editmeta',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/editmeta',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8181,7 +8181,7 @@ class IssuesApi {
       {required String issueIdOrKey, required Notification body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/notify',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/notify',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8219,7 +8219,7 @@ class IssuesApi {
       bool? sortByOpsBarAndStatus}) async {
     return Transitions.fromJson(await _client.send(
       'get',
-      'rest/api/3/issue/{issueIdOrKey}/transitions',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/transitions',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8258,7 +8258,7 @@ class IssuesApi {
       {required String issueIdOrKey, required IssueUpdateDetails body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/issue/{issueIdOrKey}/transitions',
+      'rest/api/${ApiClient.API_VERSION}/issue/{issueIdOrKey}/transitions',
       pathParameters: {
         'issueIdOrKey': issueIdOrKey,
       },
@@ -8288,7 +8288,7 @@ class IssuesApi {
       {required ArchivedIssuesFilterRequest body}) async {
     return ExportArchivedIssuesTaskProgressResponse.fromJson(await _client.send(
       'put',
-      'rest/api/3/issues/archive/export',
+      'rest/api/${ApiClient.API_VERSION}/issues/archive/export',
       body: body.toJson(),
     ));
   }
@@ -8321,7 +8321,7 @@ class JQLApi {
   Future<JQLReferenceData> getAutoComplete() async {
     return JQLReferenceData.fromJson(await _client.send(
       'get',
-      'rest/api/3/jql/autocompletedata',
+      'rest/api/${ApiClient.API_VERSION}/jql/autocompletedata',
     ));
   }
 
@@ -8349,7 +8349,7 @@ class JQLApi {
       {required SearchAutoCompleteFilter body}) async {
     return JQLReferenceData.fromJson(await _client.send(
       'post',
-      'rest/api/3/jql/autocompletedata',
+      'rest/api/${ApiClient.API_VERSION}/jql/autocompletedata',
       body: body.toJson(),
     ));
   }
@@ -8376,7 +8376,7 @@ class JQLApi {
       String? predicateValue}) async {
     return AutoCompleteSuggestions.fromJson(await _client.send(
       'get',
-      'rest/api/3/jql/autocompletedata/suggestions',
+      'rest/api/${ApiClient.API_VERSION}/jql/autocompletedata/suggestions',
       queryParameters: {
         if (fieldName != null) 'fieldName': fieldName,
         if (fieldValue != null) 'fieldValue': fieldValue,
@@ -8397,7 +8397,7 @@ class JQLApi {
       {String? validation, required JqlQueriesToParse body}) async {
     return ParsedJqlQueries.fromJson(await _client.send(
       'post',
-      'rest/api/3/jql/parse',
+      'rest/api/${ApiClient.API_VERSION}/jql/parse',
       queryParameters: {
         if (validation != null) 'validation': validation,
       },
@@ -8418,7 +8418,7 @@ class JQLApi {
       {required JQLPersonalDataMigrationRequest body}) async {
     return ConvertedJQLQueries.fromJson(await _client.send(
       'post',
-      'rest/api/3/jql/pdcleaner',
+      'rest/api/${ApiClient.API_VERSION}/jql/pdcleaner',
       body: body.toJson(),
     ));
   }
@@ -8447,7 +8447,7 @@ class JQLApi {
       {required JqlQueriesToSanitize body}) async {
     return SanitizedJqlQueries.fromJson(await _client.send(
       'post',
-      'rest/api/3/jql/sanitize',
+      'rest/api/${ApiClient.API_VERSION}/jql/sanitize',
       body: body.toJson(),
     ));
   }
@@ -8475,7 +8475,7 @@ class JQLFunctionsAppsApi {
       String? filter}) async {
     return PageBeanJqlFunctionPrecomputationBean.fromJson(await _client.send(
       'get',
-      'rest/api/3/jql/function/computation',
+      'rest/api/${ApiClient.API_VERSION}/jql/function/computation',
       queryParameters: {
         if (functionKey != null)
           'functionKey': functionKey.map((e) => e).join(','),
@@ -8496,7 +8496,7 @@ class JQLFunctionsAppsApi {
       {required JqlFunctionPrecomputationUpdateRequestBean body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/jql/function/computation',
+      'rest/api/${ApiClient.API_VERSION}/jql/function/computation',
       body: body.toJson(),
     );
   }
@@ -8522,7 +8522,7 @@ class JiraExpressionsApi {
       {String? check, required JiraExpressionForAnalysis body}) async {
     return JiraExpressionsAnalysis.fromJson(await _client.send(
       'post',
-      'rest/api/3/expression/analyse',
+      'rest/api/${ApiClient.API_VERSION}/expression/analyse',
       queryParameters: {
         if (check != null) 'check': check,
       },
@@ -8614,7 +8614,7 @@ class JiraExpressionsApi {
       {String? expand, required JiraExpressionEvalRequestBean body}) async {
     return JiraExpressionResult.fromJson(await _client.send(
       'post',
-      'rest/api/3/expression/eval',
+      'rest/api/${ApiClient.API_VERSION}/expression/eval',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -8644,7 +8644,7 @@ class JiraSettingsApi {
       {String? key, String? permissionLevel, String? keyFilter}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/application-properties',
+      'rest/api/${ApiClient.API_VERSION}/application-properties',
       queryParameters: {
         if (key != null) 'key': key,
         if (permissionLevel != null) 'permissionLevel': permissionLevel,
@@ -8666,7 +8666,7 @@ class JiraSettingsApi {
   Future<List<ApplicationProperty>> getAdvancedSettings() async {
     return (await _client.send(
       'get',
-      'rest/api/3/application-properties/advanced-settings',
+      'rest/api/${ApiClient.API_VERSION}/application-properties/advanced-settings',
     ) as List<Object?>)
         .map((i) => ApplicationProperty.fromJson(
             i as Map<String, Object?>? ?? const {}))
@@ -8776,7 +8776,7 @@ class JiraSettingsApi {
       {required String id, required SimpleApplicationPropertyBean body}) async {
     return ApplicationProperty.fromJson(await _client.send(
       'put',
-      'rest/api/3/application-properties/{id}',
+      'rest/api/${ApiClient.API_VERSION}/application-properties/{id}',
       pathParameters: {
         'id': id,
       },
@@ -8793,7 +8793,7 @@ class JiraSettingsApi {
   Future<Configuration> getConfiguration() async {
     return Configuration.fromJson(await _client.send(
       'get',
-      'rest/api/3/configuration',
+      'rest/api/${ApiClient.API_VERSION}/configuration',
     ));
   }
 }
@@ -8809,7 +8809,7 @@ class LabelsApi {
   Future<PageBeanString> getAllLabels({int? startAt, int? maxResults}) async {
     return PageBeanString.fromJson(await _client.send(
       'get',
-      'rest/api/3/label',
+      'rest/api/${ApiClient.API_VERSION}/label',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -8831,7 +8831,7 @@ class LicenseMetricsApi {
   Future<License> getLicense() async {
     return License.fromJson(await _client.send(
       'get',
-      'rest/api/3/instance/license',
+      'rest/api/${ApiClient.API_VERSION}/instance/license',
     ));
   }
 
@@ -8844,7 +8844,7 @@ class LicenseMetricsApi {
   Future<LicenseMetric> getApproximateLicenseCount() async {
     return LicenseMetric.fromJson(await _client.send(
       'get',
-      'rest/api/3/license/approximateLicenseCount',
+      'rest/api/${ApiClient.API_VERSION}/license/approximateLicenseCount',
     ));
   }
 
@@ -8858,7 +8858,7 @@ class LicenseMetricsApi {
       String applicationKey) async {
     return LicenseMetric.fromJson(await _client.send(
       'get',
-      'rest/api/3/license/approximateLicenseCount/product/{applicationKey}',
+      'rest/api/${ApiClient.API_VERSION}/license/approximateLicenseCount/product/{applicationKey}',
       pathParameters: {
         'applicationKey': applicationKey,
       },
@@ -8890,7 +8890,7 @@ class MyselfApi {
   Future<String> getPreference(String key) async {
     return await _client.send(
       'get',
-      'rest/api/3/mypreferences',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences',
       queryParameters: {
         'key': key,
       },
@@ -8932,7 +8932,7 @@ class MyselfApi {
       {required String key, required String body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/mypreferences',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences',
       queryParameters: {
         'key': key,
       },
@@ -8958,7 +8958,7 @@ class MyselfApi {
   Future<void> removePreference(String key) async {
     await _client.send(
       'delete',
-      'rest/api/3/mypreferences',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences',
       queryParameters: {
         'key': key,
       },
@@ -8979,7 +8979,7 @@ class MyselfApi {
   Future<Locale> getLocale() async {
     return Locale.fromJson(await _client.send(
       'get',
-      'rest/api/3/mypreferences/locale',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences/locale',
     ));
   }
 
@@ -8995,7 +8995,7 @@ class MyselfApi {
   Future<dynamic> setLocale({required Locale body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/mypreferences/locale',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences/locale',
       body: body.toJson(),
     );
   }
@@ -9011,7 +9011,7 @@ class MyselfApi {
   Future<dynamic> deleteLocale() async {
     return await _client.send(
       'delete',
-      'rest/api/3/mypreferences/locale',
+      'rest/api/${ApiClient.API_VERSION}/mypreferences/locale',
     );
   }
 
@@ -9021,7 +9021,7 @@ class MyselfApi {
   Future<User> getCurrentUser({String? expand}) async {
     return User.fromJson(await _client.send(
       'get',
-      'rest/api/3/myself',
+      'rest/api/${ApiClient.API_VERSION}/myself',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -9156,7 +9156,7 @@ class PermissionSchemesApi {
   Future<PermissionSchemes> getAllPermissionSchemes({String? expand}) async {
     return PermissionSchemes.fromJson(await _client.send(
       'get',
-      'rest/api/3/permissionscheme',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -9172,7 +9172,7 @@ class PermissionSchemesApi {
       {String? expand, required PermissionScheme body}) async {
     return PermissionScheme.fromJson(await _client.send(
       'post',
-      'rest/api/3/permissionscheme',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -9187,7 +9187,7 @@ class PermissionSchemesApi {
       {required int schemeId, String? expand}) async {
     return PermissionScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/permissionscheme/{schemeId}',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}',
       pathParameters: {
         'schemeId': '$schemeId',
       },
@@ -9225,7 +9225,7 @@ class PermissionSchemesApi {
       required PermissionScheme body}) async {
     return PermissionScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/permissionscheme/{schemeId}',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}',
       pathParameters: {
         'schemeId': '$schemeId',
       },
@@ -9243,7 +9243,7 @@ class PermissionSchemesApi {
   Future<void> deletePermissionScheme(int schemeId) async {
     await _client.send(
       'delete',
-      'rest/api/3/permissionscheme/{schemeId}',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}',
       pathParameters: {
         'schemeId': '$schemeId',
       },
@@ -9257,7 +9257,7 @@ class PermissionSchemesApi {
       {required int schemeId, String? expand}) async {
     return PermissionGrants.fromJson(await _client.send(
       'get',
-      'rest/api/3/permissionscheme/{schemeId}/permission',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}/permission',
       pathParameters: {
         'schemeId': '$schemeId',
       },
@@ -9277,7 +9277,7 @@ class PermissionSchemesApi {
       required PermissionGrant body}) async {
     return PermissionGrant.fromJson(await _client.send(
       'post',
-      'rest/api/3/permissionscheme/{schemeId}/permission',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}/permission',
       pathParameters: {
         'schemeId': '$schemeId',
       },
@@ -9297,7 +9297,7 @@ class PermissionSchemesApi {
       String? expand}) async {
     return PermissionGrant.fromJson(await _client.send(
       'get',
-      'rest/api/3/permissionscheme/{schemeId}/permission/{permissionId}',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}/permission/{permissionId}',
       pathParameters: {
         'schemeId': '$schemeId',
         'permissionId': '$permissionId',
@@ -9318,7 +9318,7 @@ class PermissionSchemesApi {
       {required int schemeId, required int permissionId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/permissionscheme/{schemeId}/permission/{permissionId}',
+      'rest/api/${ApiClient.API_VERSION}/permissionscheme/{schemeId}/permission/{permissionId}',
       pathParameters: {
         'schemeId': '$schemeId',
         'permissionId': '$permissionId',
@@ -9378,7 +9378,7 @@ class PermissionsApi {
       String? commentId}) async {
     return Permissions.fromJson(await _client.send(
       'get',
-      'rest/api/3/mypermissions',
+      'rest/api/${ApiClient.API_VERSION}/mypermissions',
       queryParameters: {
         if (projectKey != null) 'projectKey': projectKey,
         if (projectId != null) 'projectId': projectId,
@@ -9404,7 +9404,7 @@ class PermissionsApi {
   Future<Permissions> getAllPermissions() async {
     return Permissions.fromJson(await _client.send(
       'get',
-      'rest/api/3/permissions',
+      'rest/api/${ApiClient.API_VERSION}/permissions',
     ));
   }
 
@@ -9440,7 +9440,7 @@ class PermissionsApi {
       {required BulkPermissionsRequestBean body}) async {
     return BulkPermissionGrants.fromJson(await _client.send(
       'post',
-      'rest/api/3/permissions/check',
+      'rest/api/${ApiClient.API_VERSION}/permissions/check',
       body: body.toJson(),
     ));
   }
@@ -9455,7 +9455,7 @@ class PermissionsApi {
       {required PermissionsKeysBean body}) async {
     return PermittedProjects.fromJson(await _client.send(
       'post',
-      'rest/api/3/permissions/project',
+      'rest/api/${ApiClient.API_VERSION}/permissions/project',
       body: body.toJson(),
     ));
   }
@@ -9481,7 +9481,7 @@ class ProjectAvatarsApi {
       {required String projectIdOrKey, required Avatar body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/project/{projectIdOrKey}/avatar',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/avatar',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9498,7 +9498,7 @@ class ProjectAvatarsApi {
       {required String projectIdOrKey, required int id}) async {
     await _client.send(
       'delete',
-      'rest/api/3/project/{projectIdOrKey}/avatar/{id}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/avatar/{id}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'id': '$id',
@@ -9529,7 +9529,7 @@ class ProjectAvatarsApi {
   /// `--data-binary "<@/path/to/file/with/your/avatar>" `
   ///
   /// `--url
-  /// 'https://your-domain.atlassian.net/rest/api/3/project/{projectIdOrKey}/avatar2'`
+  /// 'https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/avatar2'`
   ///
   /// The avatar is cropped to a square. If no crop parameters are specified,
   /// the square originates at the top left of the image. The length of the
@@ -9552,7 +9552,7 @@ class ProjectAvatarsApi {
       required dynamic body}) async {
     return Avatar.fromJson(await _client.send(
       'post',
-      'rest/api/3/project/{projectIdOrKey}/avatar2',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/avatar2',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9575,7 +9575,7 @@ class ProjectAvatarsApi {
   Future<ProjectAvatars> getAllProjectAvatars(String projectIdOrKey) async {
     return ProjectAvatars.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/avatars',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/avatars',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9596,7 +9596,7 @@ class ProjectCategoriesApi {
   Future<List<ProjectCategory>> getAllProjectCategories() async {
     return (await _client.send(
       'get',
-      'rest/api/3/projectCategory',
+      'rest/api/${ApiClient.API_VERSION}/projectCategory',
     ) as List<Object?>)
         .map((i) =>
             ProjectCategory.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -9611,7 +9611,7 @@ class ProjectCategoriesApi {
       {required ProjectCategory body}) async {
     return ProjectCategory.fromJson(await _client.send(
       'post',
-      'rest/api/3/projectCategory',
+      'rest/api/${ApiClient.API_VERSION}/projectCategory',
       body: body.toJson(),
     ));
   }
@@ -9622,7 +9622,7 @@ class ProjectCategoriesApi {
   Future<ProjectCategory> getProjectCategoryById(int id) async {
     return ProjectCategory.fromJson(await _client.send(
       'get',
-      'rest/api/3/projectCategory/{id}',
+      'rest/api/${ApiClient.API_VERSION}/projectCategory/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -9637,7 +9637,7 @@ class ProjectCategoriesApi {
       {required int id, required ProjectCategory body}) async {
     return UpdatedProjectCategory.fromJson(await _client.send(
       'put',
-      'rest/api/3/projectCategory/{id}',
+      'rest/api/${ApiClient.API_VERSION}/projectCategory/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -9652,7 +9652,7 @@ class ProjectCategoriesApi {
   Future<void> removeProjectCategory(int id) async {
     await _client.send(
       'delete',
-      'rest/api/3/projectCategory/{id}',
+      'rest/api/${ApiClient.API_VERSION}/projectCategory/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -9680,7 +9680,7 @@ class ProjectComponentsApi {
       {required ProjectComponent body}) async {
     return ProjectComponent.fromJson(await _client.send(
       'post',
-      'rest/api/3/component',
+      'rest/api/${ApiClient.API_VERSION}/component',
       body: body.toJson(),
     ));
   }
@@ -9695,7 +9695,7 @@ class ProjectComponentsApi {
   Future<ProjectComponent> getComponent(String id) async {
     return ProjectComponent.fromJson(await _client.send(
       'get',
-      'rest/api/3/component/{id}',
+      'rest/api/${ApiClient.API_VERSION}/component/{id}',
       pathParameters: {
         'id': id,
       },
@@ -9715,7 +9715,7 @@ class ProjectComponentsApi {
       {required String id, required ProjectComponent body}) async {
     return ProjectComponent.fromJson(await _client.send(
       'put',
-      'rest/api/3/component/{id}',
+      'rest/api/${ApiClient.API_VERSION}/component/{id}',
       pathParameters: {
         'id': id,
       },
@@ -9735,7 +9735,7 @@ class ProjectComponentsApi {
       {required String id, String? moveIssuesTo}) async {
     await _client.send(
       'delete',
-      'rest/api/3/component/{id}',
+      'rest/api/${ApiClient.API_VERSION}/component/{id}',
       pathParameters: {
         'id': id,
       },
@@ -9753,7 +9753,7 @@ class ProjectComponentsApi {
   Future<ComponentIssuesCount> getComponentRelatedIssues(String id) async {
     return ComponentIssuesCount.fromJson(await _client.send(
       'get',
-      'rest/api/3/component/{id}/relatedIssueCounts',
+      'rest/api/${ApiClient.API_VERSION}/component/{id}/relatedIssueCounts',
       pathParameters: {
         'id': id,
       },
@@ -9778,7 +9778,7 @@ class ProjectComponentsApi {
       String? query}) async {
     return PageBeanComponentWithIssueCount.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/component',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/component',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9804,7 +9804,7 @@ class ProjectComponentsApi {
       String projectIdOrKey) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/components',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/components',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9831,7 +9831,7 @@ class ProjectEmailApi {
   Future<ProjectEmailAddress> getProjectEmail(int projectId) async {
     return ProjectEmailAddress.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectId}/email',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectId}/email',
       pathParameters: {
         'projectId': '$projectId',
       },
@@ -9851,7 +9851,7 @@ class ProjectEmailApi {
       {required int projectId, required ProjectEmailAddress body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/project/{projectId}/email',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectId}/email',
       pathParameters: {
         'projectId': '$projectId',
       },
@@ -9872,7 +9872,7 @@ class ProjectFeaturesApi {
       String projectIdOrKey) async {
     return ContainerForProjectFeatures.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/features',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/features',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -9886,7 +9886,7 @@ class ProjectFeaturesApi {
       required ProjectFeatureState body}) async {
     return ContainerForProjectFeatures.fromJson(await _client.send(
       'put',
-      'rest/api/3/project/{projectIdOrKey}/features/{featureKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/features/{featureKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'featureKey': featureKey,
@@ -9910,7 +9910,7 @@ class ProjectKeyAndNameValidationApi {
   Future<ErrorCollection> validateProjectKey({String? key}) async {
     return ErrorCollection.fromJson(await _client.send(
       'get',
-      'rest/api/3/projectvalidate/key',
+      'rest/api/${ApiClient.API_VERSION}/projectvalidate/key',
       queryParameters: {
         if (key != null) 'key': key,
       },
@@ -9924,7 +9924,7 @@ class ProjectKeyAndNameValidationApi {
   Future<String> getValidProjectKey({String? key}) async {
     return await _client.send(
       'get',
-      'rest/api/3/projectvalidate/validProjectKey',
+      'rest/api/${ApiClient.API_VERSION}/projectvalidate/validProjectKey',
       queryParameters: {
         if (key != null) 'key': key,
       },
@@ -9941,7 +9941,7 @@ class ProjectKeyAndNameValidationApi {
   Future<String> getValidProjectName(String name) async {
     return await _client.send(
       'get',
-      'rest/api/3/projectvalidate/validProjectName',
+      'rest/api/${ApiClient.API_VERSION}/projectvalidate/validProjectName',
       queryParameters: {
         'name': name,
       },
@@ -9968,7 +9968,7 @@ class ProjectPermissionSchemesApi {
       String projectKeyOrId) async {
     return SecurityScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectKeyOrId}/issuesecuritylevelscheme',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectKeyOrId}/issuesecuritylevelscheme',
       pathParameters: {
         'projectKeyOrId': projectKeyOrId,
       },
@@ -9986,7 +9986,7 @@ class ProjectPermissionSchemesApi {
       {required String projectKeyOrId, String? expand}) async {
     return PermissionScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectKeyOrId}/permissionscheme',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectKeyOrId}/permissionscheme',
       pathParameters: {
         'projectKeyOrId': projectKeyOrId,
       },
@@ -10008,7 +10008,7 @@ class ProjectPermissionSchemesApi {
       required IdBean body}) async {
     return PermissionScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/project/{projectKeyOrId}/permissionscheme',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectKeyOrId}/permissionscheme',
       pathParameters: {
         'projectKeyOrId': projectKeyOrId,
       },
@@ -10034,7 +10034,7 @@ class ProjectPermissionSchemesApi {
       String projectKeyOrId) async {
     return ProjectIssueSecurityLevels.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectKeyOrId}/securitylevel',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectKeyOrId}/securitylevel',
       pathParameters: {
         'projectKeyOrId': projectKeyOrId,
       },
@@ -10061,7 +10061,7 @@ class ProjectPropertiesApi {
   Future<PropertyKeys> getProjectPropertyKeys(String projectIdOrKey) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/properties',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/properties',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -10080,7 +10080,7 @@ class ProjectPropertiesApi {
       {required String projectIdOrKey, required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'propertyKey': propertyKey,
@@ -10109,7 +10109,7 @@ class ProjectPropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/project/{projectIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'propertyKey': propertyKey,
@@ -10133,7 +10133,7 @@ class ProjectPropertiesApi {
       {required String projectIdOrKey, required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/project/{projectIdOrKey}/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/properties/{propertyKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'propertyKey': propertyKey,
@@ -10165,7 +10165,7 @@ class ProjectRoleActorsApi {
       required ProjectRoleActorsUpdateBean body}) async {
     return ProjectRole.fromJson(await _client.send(
       'put',
-      'rest/api/3/project/{projectIdOrKey}/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/role/{id}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'id': '$id',
@@ -10191,7 +10191,7 @@ class ProjectRoleActorsApi {
       required ActorsMap body}) async {
     return ProjectRole.fromJson(await _client.send(
       'post',
-      'rest/api/3/project/{projectIdOrKey}/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/role/{id}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'id': '$id',
@@ -10219,7 +10219,7 @@ class ProjectRoleActorsApi {
       String? groupId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/project/{projectIdOrKey}/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/role/{id}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'id': '$id',
@@ -10240,7 +10240,7 @@ class ProjectRoleActorsApi {
   Future<ProjectRole> getProjectRoleActorsForRole(int id) async {
     return ProjectRole.fromJson(await _client.send(
       'get',
-      'rest/api/3/role/{id}/actors',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}/actors',
       pathParameters: {
         'id': '$id',
       },
@@ -10260,7 +10260,7 @@ class ProjectRoleActorsApi {
       {required int id, required ActorInputBean body}) async {
     return ProjectRole.fromJson(await _client.send(
       'post',
-      'rest/api/3/role/{id}/actors',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}/actors',
       pathParameters: {
         'id': '$id',
       },
@@ -10281,7 +10281,7 @@ class ProjectRoleActorsApi {
       {required int id, String? user, String? groupId, String? group}) async {
     return ProjectRole.fromJson(await _client.send(
       'delete',
-      'rest/api/3/role/{id}/actors',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}/actors',
       pathParameters: {
         'id': '$id',
       },
@@ -10318,7 +10318,7 @@ class ProjectRolesApi {
   Future<Map<String, dynamic>> getProjectRoles(String projectIdOrKey) async {
     return await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/role',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/role',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -10345,7 +10345,7 @@ class ProjectRolesApi {
       bool? excludeInactiveUsers}) async {
     return ProjectRole.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/role/{id}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
         'id': '$id',
@@ -10374,7 +10374,7 @@ class ProjectRolesApi {
       bool? excludeConnectAddons}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/roledetails',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/roledetails',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -10428,7 +10428,7 @@ class ProjectRolesApi {
   Future<List<ProjectRole>> getAllProjectRoles() async {
     return (await _client.send(
       'get',
-      'rest/api/3/role',
+      'rest/api/${ApiClient.API_VERSION}/role',
     ) as List<Object?>)
         .map(
             (i) => ProjectRole.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -10450,7 +10450,7 @@ class ProjectRolesApi {
       {required CreateUpdateRoleRequestBean body}) async {
     return ProjectRole.fromJson(await _client.send(
       'post',
-      'rest/api/3/role',
+      'rest/api/${ApiClient.API_VERSION}/role',
       body: body.toJson(),
     ));
   }
@@ -10463,7 +10463,7 @@ class ProjectRolesApi {
   Future<ProjectRole> getProjectRoleById(int id) async {
     return ProjectRole.fromJson(await _client.send(
       'get',
-      'rest/api/3/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -10479,7 +10479,7 @@ class ProjectRolesApi {
       {required int id, required CreateUpdateRoleRequestBean body}) async {
     return ProjectRole.fromJson(await _client.send(
       'put',
-      'rest/api/3/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -10499,7 +10499,7 @@ class ProjectRolesApi {
       {required int id, required CreateUpdateRoleRequestBean body}) async {
     return ProjectRole.fromJson(await _client.send(
       'post',
-      'rest/api/3/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -10515,7 +10515,7 @@ class ProjectRolesApi {
   Future<void> deleteProjectRole({required int id, int? swap}) async {
     await _client.send(
       'delete',
-      'rest/api/3/role/{id}',
+      'rest/api/${ApiClient.API_VERSION}/role/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -10542,7 +10542,7 @@ class ProjectTypesApi {
   Future<List<ProjectType>> getAllProjectTypes() async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/type',
+      'rest/api/${ApiClient.API_VERSION}/project/type',
     ) as List<Object?>)
         .map(
             (i) => ProjectType.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -10554,7 +10554,7 @@ class ProjectTypesApi {
   Future<List<ProjectType>> getAllAccessibleProjectTypes() async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/type/accessible',
+      'rest/api/${ApiClient.API_VERSION}/project/type/accessible',
     ) as List<Object?>)
         .map(
             (i) => ProjectType.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -10569,7 +10569,7 @@ class ProjectTypesApi {
   Future<ProjectType> getProjectTypeByKey(String projectTypeKey) async {
     return ProjectType.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/type/{projectTypeKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/type/{projectTypeKey}',
       pathParameters: {
         'projectTypeKey': projectTypeKey,
       },
@@ -10584,7 +10584,7 @@ class ProjectTypesApi {
       String projectTypeKey) async {
     return ProjectType.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/type/{projectTypeKey}/accessible',
+      'rest/api/${ApiClient.API_VERSION}/project/type/{projectTypeKey}/accessible',
       pathParameters: {
         'projectTypeKey': projectTypeKey,
       },
@@ -10619,7 +10619,7 @@ class ProjectVersionsApi {
       String? expand}) async {
     return PageBeanVersion.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/version',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/version',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -10647,7 +10647,7 @@ class ProjectVersionsApi {
       {required String projectIdOrKey, String? expand}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/versions',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/versions',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -10671,7 +10671,7 @@ class ProjectVersionsApi {
   Future<Version> createVersion({required Version body}) async {
     return Version.fromJson(await _client.send(
       'post',
-      'rest/api/3/version',
+      'rest/api/${ApiClient.API_VERSION}/version',
       body: body.toJson(),
     ));
   }
@@ -10686,7 +10686,7 @@ class ProjectVersionsApi {
   Future<Version> getVersion({required String id, String? expand}) async {
     return Version.fromJson(await _client.send(
       'get',
-      'rest/api/3/version/{id}',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}',
       pathParameters: {
         'id': id,
       },
@@ -10709,7 +10709,7 @@ class ProjectVersionsApi {
       {required String id, required Version body}) async {
     return Version.fromJson(await _client.send(
       'put',
-      'rest/api/3/version/{id}',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}',
       pathParameters: {
         'id': id,
       },
@@ -10743,7 +10743,7 @@ class ProjectVersionsApi {
       String? moveAffectedIssuesTo}) async {
     await _client.send(
       'delete',
-      'rest/api/3/version/{id}',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}',
       pathParameters: {
         'id': id,
       },
@@ -10775,7 +10775,7 @@ class ProjectVersionsApi {
       {required String id, required String moveIssuesTo}) async {
     return await _client.send(
       'put',
-      'rest/api/3/version/{id}/mergeto/{moveIssuesTo}',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}/mergeto/{moveIssuesTo}',
       pathParameters: {
         'id': id,
         'moveIssuesTo': moveIssuesTo,
@@ -10794,7 +10794,7 @@ class ProjectVersionsApi {
       {required String id, required VersionMoveBean body}) async {
     return Version.fromJson(await _client.send(
       'post',
-      'rest/api/3/version/{id}/move',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}/move',
       pathParameters: {
         'id': id,
       },
@@ -10815,7 +10815,7 @@ class ProjectVersionsApi {
   Future<VersionIssueCounts> getVersionRelatedIssues(String id) async {
     return VersionIssueCounts.fromJson(await _client.send(
       'get',
-      'rest/api/3/version/{id}/relatedIssueCounts',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}/relatedIssueCounts',
       pathParameters: {
         'id': id,
       },
@@ -10843,7 +10843,7 @@ class ProjectVersionsApi {
       {required String id, required DeleteAndReplaceVersionBean body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/version/{id}/removeAndSwap',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}/removeAndSwap',
       pathParameters: {
         'id': id,
       },
@@ -10862,7 +10862,7 @@ class ProjectVersionsApi {
       String id) async {
     return VersionUnresolvedIssuesCount.fromJson(await _client.send(
       'get',
-      'rest/api/3/version/{id}/unresolvedIssueCount',
+      'rest/api/${ApiClient.API_VERSION}/version/{id}/unresolvedIssueCount',
       pathParameters: {
         'id': id,
       },
@@ -10892,7 +10892,7 @@ class ProjectsApi {
       {String? expand, int? recent, List<String>? properties}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project',
+      'rest/api/${ApiClient.API_VERSION}/project',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (recent != null) 'recent': '$recent',
@@ -10968,7 +10968,7 @@ class ProjectsApi {
       {required CreateProjectDetails body}) async {
     return ProjectIdentifiers.fromJson(await _client.send(
       'post',
-      'rest/api/3/project',
+      'rest/api/${ApiClient.API_VERSION}/project',
       body: body.toJson(),
     ));
   }
@@ -10993,7 +10993,7 @@ class ProjectsApi {
       {String? expand, List<StringList>? properties}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/recent',
+      'rest/api/${ApiClient.API_VERSION}/project/recent',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (properties != null)
@@ -11035,7 +11035,7 @@ class ProjectsApi {
       String? propertyQuery}) async {
     return PageBeanProject.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/search',
+      'rest/api/${ApiClient.API_VERSION}/project/search',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -11069,7 +11069,7 @@ class ProjectsApi {
       List<String>? properties}) async {
     return Project.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11099,7 +11099,7 @@ class ProjectsApi {
       required UpdateProjectDetails body}) async {
     return Project.fromJson(await _client.send(
       'put',
-      'rest/api/3/project/{projectIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11122,7 +11122,7 @@ class ProjectsApi {
       {required String projectIdOrKey, bool? enableUndo}) async {
     await _client.send(
       'delete',
-      'rest/api/3/project/{projectIdOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11141,7 +11141,7 @@ class ProjectsApi {
   Future<dynamic> archiveProject(String projectIdOrKey) async {
     return await _client.send(
       'post',
-      'rest/api/3/project/{projectIdOrKey}/archive',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/archive',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11164,7 +11164,7 @@ class ProjectsApi {
       String projectIdOrKey) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'post',
-      'rest/api/3/project/{projectIdOrKey}/delete',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/delete',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11187,7 +11187,7 @@ class ProjectsApi {
   Future<Project> restore(String projectIdOrKey) async {
     return Project.fromJson(await _client.send(
       'post',
-      'rest/api/3/project/{projectIdOrKey}/restore',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/restore',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11207,7 +11207,7 @@ class ProjectsApi {
       String projectIdOrKey) async {
     return (await _client.send(
       'get',
-      'rest/api/3/project/{projectIdOrKey}/statuses',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectIdOrKey}/statuses',
       pathParameters: {
         'projectIdOrKey': projectIdOrKey,
       },
@@ -11236,7 +11236,7 @@ class ProjectsApi {
   Future<ProjectIssueTypeHierarchy> getHierarchy(int projectId) async {
     return ProjectIssueTypeHierarchy.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectId}/hierarchy',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectId}/hierarchy',
       pathParameters: {
         'projectId': '$projectId',
       },
@@ -11254,7 +11254,7 @@ class ProjectsApi {
       {required String projectKeyOrId, String? expand}) async {
     return NotificationScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/project/{projectKeyOrId}/notificationscheme',
+      'rest/api/${ApiClient.API_VERSION}/project/{projectKeyOrId}/notificationscheme',
       pathParameters: {
         'projectKeyOrId': projectKeyOrId,
       },
@@ -11287,7 +11287,7 @@ class ScreenSchemesApi {
       String? orderBy}) async {
     return PageBeanScreenScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/screenscheme',
+      'rest/api/${ApiClient.API_VERSION}/screenscheme',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -11307,7 +11307,7 @@ class ScreenSchemesApi {
       {required ScreenSchemeDetails body}) async {
     return ScreenSchemeId.fromJson(await _client.send(
       'post',
-      'rest/api/3/screenscheme',
+      'rest/api/${ApiClient.API_VERSION}/screenscheme',
       body: body.toJson(),
     ));
   }
@@ -11322,7 +11322,7 @@ class ScreenSchemesApi {
       required UpdateScreenSchemeDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/screenscheme/{screenSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/screenscheme/{screenSchemeId}',
       pathParameters: {
         'screenSchemeId': screenSchemeId,
       },
@@ -11340,7 +11340,7 @@ class ScreenSchemesApi {
   Future<void> deleteScreenScheme(String screenSchemeId) async {
     await _client.send(
       'delete',
-      'rest/api/3/screenscheme/{screenSchemeId}',
+      'rest/api/${ApiClient.API_VERSION}/screenscheme/{screenSchemeId}',
       pathParameters: {
         'screenSchemeId': screenSchemeId,
       },
@@ -11369,7 +11369,7 @@ class ScreenTabFieldsApi {
       {required int screenId, required int tabId, String? projectKey}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}/fields',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}/fields',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11393,7 +11393,7 @@ class ScreenTabFieldsApi {
       required AddFieldBean body}) async {
     return ScreenableField.fromJson(await _client.send(
       'post',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}/fields',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}/fields',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11410,7 +11410,7 @@ class ScreenTabFieldsApi {
       {required int screenId, required int tabId, required String id}) async {
     await _client.send(
       'delete',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}/fields/{id}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}/fields/{id}',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11433,7 +11433,7 @@ class ScreenTabFieldsApi {
       required MoveFieldBean body}) async {
     return await _client.send(
       'post',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}/fields/{id}/move',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}/fields/{id}/move',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11465,7 +11465,7 @@ class ScreenTabsApi {
       {required int screenId, String? projectKey}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/screens/{screenId}/tabs',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs',
       pathParameters: {
         'screenId': '$screenId',
       },
@@ -11486,7 +11486,7 @@ class ScreenTabsApi {
       {required int screenId, required ScreenableTab body}) async {
     return ScreenableTab.fromJson(await _client.send(
       'post',
-      'rest/api/3/screens/{screenId}/tabs',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs',
       pathParameters: {
         'screenId': '$screenId',
       },
@@ -11504,7 +11504,7 @@ class ScreenTabsApi {
       required ScreenableTab body}) async {
     return ScreenableTab.fromJson(await _client.send(
       'put',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11521,7 +11521,7 @@ class ScreenTabsApi {
       {required int screenId, required int tabId}) async {
     await _client.send(
       'delete',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11537,7 +11537,7 @@ class ScreenTabsApi {
       {required int screenId, required int tabId, required int pos}) async {
     return await _client.send(
       'post',
-      'rest/api/3/screens/{screenId}/tabs/{tabId}/move/{pos}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/tabs/{tabId}/move/{pos}',
       pathParameters: {
         'screenId': '$screenId',
         'tabId': '$tabId',
@@ -11565,7 +11565,7 @@ class ScreensApi {
       String? expand}) async {
     return PageBeanScreenWithTab.fromJson(await _client.send(
       'get',
-      'rest/api/3/field/{fieldId}/screens',
+      'rest/api/${ApiClient.API_VERSION}/field/{fieldId}/screens',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -11591,7 +11591,7 @@ class ScreensApi {
       String? orderBy}) async {
     return PageBeanScreen.fromJson(await _client.send(
       'get',
-      'rest/api/3/screens',
+      'rest/api/${ApiClient.API_VERSION}/screens',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -11610,7 +11610,7 @@ class ScreensApi {
   Future<Screen> createScreen({required ScreenDetails body}) async {
     return Screen.fromJson(await _client.send(
       'post',
-      'rest/api/3/screens',
+      'rest/api/${ApiClient.API_VERSION}/screens',
       body: body.toJson(),
     ));
   }
@@ -11622,7 +11622,7 @@ class ScreensApi {
   Future<dynamic> addFieldToDefaultScreen(String fieldId) async {
     return await _client.send(
       'post',
-      'rest/api/3/screens/addToDefault/{fieldId}',
+      'rest/api/${ApiClient.API_VERSION}/screens/addToDefault/{fieldId}',
       pathParameters: {
         'fieldId': fieldId,
       },
@@ -11637,7 +11637,7 @@ class ScreensApi {
       {required int screenId, required UpdateScreenDetails body}) async {
     return Screen.fromJson(await _client.send(
       'put',
-      'rest/api/3/screens/{screenId}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}',
       pathParameters: {
         'screenId': '$screenId',
       },
@@ -11652,7 +11652,7 @@ class ScreensApi {
   Future<void> deleteScreen(int screenId) async {
     await _client.send(
       'delete',
-      'rest/api/3/screens/{screenId}',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}',
       pathParameters: {
         'screenId': '$screenId',
       },
@@ -11666,7 +11666,7 @@ class ScreensApi {
   Future<List<ScreenableField>> getAvailableScreenFields(int screenId) async {
     return (await _client.send(
       'get',
-      'rest/api/3/screens/{screenId}/availableFields',
+      'rest/api/${ApiClient.API_VERSION}/screens/{screenId}/availableFields',
       pathParameters: {
         'screenId': '$screenId',
       },
@@ -11692,7 +11692,7 @@ class ServerInfoApi {
   Future<ServerInformation> getServerInfo() async {
     return ServerInformation.fromJson(await _client.send(
       'get',
-      'rest/api/3/serverInfo',
+      'rest/api/${ApiClient.API_VERSION}/serverInfo',
     ));
   }
 }
@@ -11716,7 +11716,7 @@ class StatusApi {
       {String? expand, List<String>? id}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/statuses',
+      'rest/api/${ApiClient.API_VERSION}/statuses',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (id != null) 'id': id.map((e) => e).join(','),
@@ -11737,7 +11737,7 @@ class StatusApi {
   Future<dynamic> updateStatuses({required StatusUpdateRequest body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/statuses',
+      'rest/api/${ApiClient.API_VERSION}/statuses',
       body: body.toJson(),
     );
   }
@@ -11754,7 +11754,7 @@ class StatusApi {
       {required StatusCreateRequest body}) async {
     return (await _client.send(
       'post',
-      'rest/api/3/statuses',
+      'rest/api/${ApiClient.API_VERSION}/statuses',
       body: body.toJson(),
     ) as List<Object?>)
         .map((i) => JiraStatus.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -11772,7 +11772,7 @@ class StatusApi {
   Future<dynamic> deleteStatusesById({List<String>? id}) async {
     return await _client.send(
       'delete',
-      'rest/api/3/statuses',
+      'rest/api/${ApiClient.API_VERSION}/statuses',
       queryParameters: {
         if (id != null) 'id': id.map((e) => e).join(','),
       },
@@ -11798,7 +11798,7 @@ class StatusApi {
       String? statusCategory}) async {
     return PageOfStatuses.fromJson(await _client.send(
       'get',
-      'rest/api/3/statuses/search',
+      'rest/api/${ApiClient.API_VERSION}/statuses/search',
       queryParameters: {
         if (expand != null) 'expand': expand,
         if (projectId != null) 'projectId': projectId,
@@ -11834,7 +11834,7 @@ class TasksApi {
   Future<TaskProgressBeanObject> getTask(String taskId) async {
     return TaskProgressBeanObject.fromJson(await _client.send(
       'get',
-      'rest/api/3/task/{taskId}',
+      'rest/api/${ApiClient.API_VERSION}/task/{taskId}',
       pathParameters: {
         'taskId': taskId,
       },
@@ -11851,7 +11851,7 @@ class TasksApi {
   Future<dynamic> cancelTask(String taskId) async {
     return await _client.send(
       'post',
-      'rest/api/3/task/{taskId}/cancel',
+      'rest/api/${ApiClient.API_VERSION}/task/{taskId}/cancel',
       pathParameters: {
         'taskId': taskId,
       },
@@ -11875,7 +11875,7 @@ class TimeTrackingApi {
   Future<TimeTrackingProvider> getSelectedTimeTrackingImplementation() async {
     return TimeTrackingProvider.fromJson(await _client.send(
       'get',
-      'rest/api/3/configuration/timetracking',
+      'rest/api/${ApiClient.API_VERSION}/configuration/timetracking',
     ));
   }
 
@@ -11887,7 +11887,7 @@ class TimeTrackingApi {
       {required TimeTrackingProvider body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/configuration/timetracking',
+      'rest/api/${ApiClient.API_VERSION}/configuration/timetracking',
       body: body.toJson(),
     );
   }
@@ -11905,7 +11905,7 @@ class TimeTrackingApi {
       getAvailableTimeTrackingImplementations() async {
     return (await _client.send(
       'get',
-      'rest/api/3/configuration/timetracking/list',
+      'rest/api/${ApiClient.API_VERSION}/configuration/timetracking/list',
     ) as List<Object?>)
         .map((i) => TimeTrackingProvider.fromJson(
             i as Map<String, Object?>? ?? const {}))
@@ -11921,7 +11921,7 @@ class TimeTrackingApi {
   Future<TimeTrackingConfiguration> getSharedTimeTrackingConfiguration() async {
     return TimeTrackingConfiguration.fromJson(await _client.send(
       'get',
-      'rest/api/3/configuration/timetracking/options',
+      'rest/api/${ApiClient.API_VERSION}/configuration/timetracking/options',
     ));
   }
 
@@ -11933,7 +11933,7 @@ class TimeTrackingApi {
       {required TimeTrackingConfiguration body}) async {
     return TimeTrackingConfiguration.fromJson(await _client.send(
       'put',
-      'rest/api/3/configuration/timetracking/options',
+      'rest/api/${ApiClient.API_VERSION}/configuration/timetracking/options',
       body: body.toJson(),
     ));
   }
@@ -11954,7 +11954,7 @@ class UIModificationsAppsApi {
       {int? startAt, int? maxResults, String? expand}) async {
     return PageBeanUiModificationDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/uiModifications',
+      'rest/api/${ApiClient.API_VERSION}/uiModifications',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -11979,7 +11979,7 @@ class UIModificationsAppsApi {
       {required CreateUiModificationDetails body}) async {
     return UiModificationIdentifiers.fromJson(await _client.send(
       'post',
-      'rest/api/3/uiModifications',
+      'rest/api/${ApiClient.API_VERSION}/uiModifications',
       body: body.toJson(),
     ));
   }
@@ -12000,7 +12000,7 @@ class UIModificationsAppsApi {
       required UpdateUiModificationDetails body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/uiModifications/{uiModificationId}',
+      'rest/api/${ApiClient.API_VERSION}/uiModifications/{uiModificationId}',
       pathParameters: {
         'uiModificationId': uiModificationId,
       },
@@ -12016,7 +12016,7 @@ class UIModificationsAppsApi {
   Future<dynamic> deleteUiModification(String uiModificationId) async {
     return await _client.send(
       'delete',
-      'rest/api/3/uiModifications/{uiModificationId}',
+      'rest/api/${ApiClient.API_VERSION}/uiModifications/{uiModificationId}',
       pathParameters: {
         'uiModificationId': uiModificationId,
       },
@@ -12047,7 +12047,7 @@ class UserPropertiesApi {
       {String? accountId, String? userKey, String? username}) async {
     return PropertyKeys.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/properties',
+      'rest/api/${ApiClient.API_VERSION}/user/properties',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
         if (userKey != null) 'userKey': userKey,
@@ -12076,7 +12076,7 @@ class UserPropertiesApi {
       required String propertyKey}) async {
     return EntityProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/user/properties/{propertyKey}',
       pathParameters: {
         'propertyKey': propertyKey,
       },
@@ -12109,7 +12109,7 @@ class UserPropertiesApi {
       required dynamic body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/user/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/user/properties/{propertyKey}',
       pathParameters: {
         'propertyKey': propertyKey,
       },
@@ -12141,7 +12141,7 @@ class UserPropertiesApi {
       required String propertyKey}) async {
     await _client.send(
       'delete',
-      'rest/api/3/user/properties/{propertyKey}',
+      'rest/api/${ApiClient.API_VERSION}/user/properties/{propertyKey}',
       pathParameters: {
         'propertyKey': propertyKey,
       },
@@ -12191,7 +12191,7 @@ class UserSearchApi {
       int? maxResults}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/assignable/multiProjectSearch',
+      'rest/api/${ApiClient.API_VERSION}/user/assignable/multiProjectSearch',
       queryParameters: {
         if (query != null) 'query': query,
         if (username != null) 'username': username,
@@ -12248,7 +12248,7 @@ class UserSearchApi {
       bool? recommend}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/assignable/search',
+      'rest/api/${ApiClient.API_VERSION}/user/assignable/search',
       queryParameters: {
         if (query != null) 'query': query,
         if (sessionId != null) 'sessionId': sessionId,
@@ -12311,7 +12311,7 @@ class UserSearchApi {
       int? maxResults}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/permission/search',
+      'rest/api/${ApiClient.API_VERSION}/user/permission/search',
       queryParameters: {
         if (query != null) 'query': query,
         if (username != null) 'username': username,
@@ -12361,7 +12361,7 @@ class UserSearchApi {
       bool? excludeConnectUsers}) async {
     return FoundUsers.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/picker',
+      'rest/api/${ApiClient.API_VERSION}/user/picker',
       queryParameters: {
         'query': query,
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12406,7 +12406,7 @@ class UserSearchApi {
       String? property}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/search',
+      'rest/api/${ApiClient.API_VERSION}/user/search',
       queryParameters: {
         if (query != null) 'query': query,
         if (username != null) 'username': username,
@@ -12463,7 +12463,7 @@ class UserSearchApi {
       {required String query, int? startAt, int? maxResults}) async {
     return PageBeanUser.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/search/query',
+      'rest/api/${ApiClient.API_VERSION}/user/search/query',
       queryParameters: {
         'query': query,
         if (startAt != null) 'startAt': '$startAt',
@@ -12515,7 +12515,7 @@ class UserSearchApi {
       {required String query, int? startAt, int? maxResults}) async {
     return PageBeanUserKey.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/search/query/key',
+      'rest/api/${ApiClient.API_VERSION}/user/search/query/key',
       queryParameters: {
         'query': query,
         if (startAt != null) 'startAt': '$startAt',
@@ -12565,7 +12565,7 @@ class UserSearchApi {
       int? maxResults}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/viewissue/search',
+      'rest/api/${ApiClient.API_VERSION}/user/viewissue/search',
       queryParameters: {
         if (query != null) 'query': query,
         if (username != null) 'username': username,
@@ -12605,7 +12605,7 @@ class UsersApi {
       String? expand}) async {
     return User.fromJson(await _client.send(
       'get',
-      'rest/api/3/user',
+      'rest/api/${ApiClient.API_VERSION}/user',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
         if (username != null) 'username': username,
@@ -12628,7 +12628,7 @@ class UsersApi {
   Future<User> createUser({required NewUserDetails body}) async {
     return User.fromJson(await _client.send(
       'post',
-      'rest/api/3/user',
+      'rest/api/${ApiClient.API_VERSION}/user',
       body: body.toJson(),
     ));
   }
@@ -12644,7 +12644,7 @@ class UsersApi {
       {required String accountId, String? username, String? key}) async {
     await _client.send(
       'delete',
-      'rest/api/3/user',
+      'rest/api/${ApiClient.API_VERSION}/user',
       queryParameters: {
         'accountId': accountId,
         if (username != null) 'username': username,
@@ -12665,7 +12665,7 @@ class UsersApi {
       required List<String> accountId}) async {
     return PageBeanUser.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/bulk',
+      'rest/api/${ApiClient.API_VERSION}/user/bulk',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12688,7 +12688,7 @@ class UsersApi {
       List<String>? key}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/bulk/migration',
+      'rest/api/${ApiClient.API_VERSION}/user/bulk/migration',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12716,7 +12716,7 @@ class UsersApi {
       {String? accountId, String? username}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/columns',
+      'rest/api/${ApiClient.API_VERSION}/user/columns',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
         if (username != null) 'username': username,
@@ -12736,7 +12736,7 @@ class UsersApi {
   /// example, in curl:
   ///
   /// `curl -X PUT -d columns=summary -d columns=description
-  /// https://your-domain.atlassian.net/rest/api/3/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
+  /// https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/user/columns?accountId=5b10ac8d82e05b22cc7d4ef5'`
   ///
   /// **[Permissions](#permissions) required:**
   ///
@@ -12748,7 +12748,7 @@ class UsersApi {
       {String? accountId, required List<String> body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/user/columns',
+      'rest/api/${ApiClient.API_VERSION}/user/columns',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
       },
@@ -12770,7 +12770,7 @@ class UsersApi {
   Future<void> resetUserColumns({String? accountId, String? username}) async {
     await _client.send(
       'delete',
-      'rest/api/3/user/columns',
+      'rest/api/${ApiClient.API_VERSION}/user/columns',
       queryParameters: {
         if (accountId != null) 'accountId': accountId,
         if (username != null) 'username': username,
@@ -12784,7 +12784,7 @@ class UsersApi {
   Future<UnrestrictedUserEmail> getUserEmail(String accountId) async {
     return UnrestrictedUserEmail.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/email',
+      'rest/api/${ApiClient.API_VERSION}/user/email',
       queryParameters: {
         'accountId': accountId,
       },
@@ -12797,7 +12797,7 @@ class UsersApi {
   Future<UnrestrictedUserEmail> getUserEmailBulk(List<String> accountId) async {
     return UnrestrictedUserEmail.fromJson(await _client.send(
       'get',
-      'rest/api/3/user/email/bulk',
+      'rest/api/${ApiClient.API_VERSION}/user/email/bulk',
       queryParameters: {
         'accountId': accountId.map((e) => e).join(','),
       },
@@ -12812,7 +12812,7 @@ class UsersApi {
       {required String accountId, String? username, String? key}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/user/groups',
+      'rest/api/${ApiClient.API_VERSION}/user/groups',
       queryParameters: {
         'accountId': accountId,
         if (username != null) 'username': username,
@@ -12837,7 +12837,7 @@ class UsersApi {
   Future<List<User>> getAllUsersDefault({int? startAt, int? maxResults}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/users',
+      'rest/api/${ApiClient.API_VERSION}/users',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12861,7 +12861,7 @@ class UsersApi {
   Future<List<User>> getAllUsers({int? startAt, int? maxResults}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/users/search',
+      'rest/api/${ApiClient.API_VERSION}/users/search',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12891,7 +12891,7 @@ class WebhooksApi {
       {int? startAt, int? maxResults}) async {
     return PageBeanWebhook.fromJson(await _client.send(
       'get',
-      'rest/api/3/webhook',
+      'rest/api/${ApiClient.API_VERSION}/webhook',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -12914,7 +12914,7 @@ class WebhooksApi {
       {required WebhookRegistrationDetails body}) async {
     return ContainerForRegisteredWebhooks.fromJson(await _client.send(
       'post',
-      'rest/api/3/webhook',
+      'rest/api/${ApiClient.API_VERSION}/webhook',
       body: body.toJson(),
     ));
   }
@@ -12931,7 +12931,7 @@ class WebhooksApi {
   Future<void> deleteWebhookById({required ContainerForWebhookIDs body}) async {
     await _client.send(
       'delete',
-      'rest/api/3/webhook',
+      'rest/api/${ApiClient.API_VERSION}/webhook',
       body: body.toJson(),
     );
   }
@@ -12954,7 +12954,7 @@ class WebhooksApi {
       {int? maxResults, int? after}) async {
     return FailedWebhooks.fromJson(await _client.send(
       'get',
-      'rest/api/3/webhook/failed',
+      'rest/api/${ApiClient.API_VERSION}/webhook/failed',
       queryParameters: {
         if (maxResults != null) 'maxResults': '$maxResults',
         if (after != null) 'after': '$after',
@@ -12977,7 +12977,7 @@ class WebhooksApi {
       {required ContainerForWebhookIDs body}) async {
     return WebhooksExpirationDate.fromJson(await _client.send(
       'put',
-      'rest/api/3/webhook/refresh',
+      'rest/api/${ApiClient.API_VERSION}/webhook/refresh',
       body: body.toJson(),
     ));
   }
@@ -12999,7 +12999,7 @@ class WorkflowSchemeDraftsApi {
   Future<WorkflowScheme> createWorkflowSchemeDraftFromParent(int id) async {
     return WorkflowScheme.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflowscheme/{id}/createdraft',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/createdraft',
       pathParameters: {
         'id': '$id',
       },
@@ -13023,7 +13023,7 @@ class WorkflowSchemeDraftsApi {
   Future<WorkflowScheme> getWorkflowSchemeDraft(int id) async {
     return WorkflowScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/draft',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft',
       pathParameters: {
         'id': '$id',
       },
@@ -13040,7 +13040,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, required WorkflowScheme body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/draft',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft',
       pathParameters: {
         'id': '$id',
       },
@@ -13055,7 +13055,7 @@ class WorkflowSchemeDraftsApi {
   Future<void> deleteWorkflowSchemeDraft(int id) async {
     await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/draft',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft',
       pathParameters: {
         'id': '$id',
       },
@@ -13073,7 +13073,7 @@ class WorkflowSchemeDraftsApi {
   Future<DefaultWorkflow> getDraftDefaultWorkflow(int id) async {
     return DefaultWorkflow.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/draft/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13088,7 +13088,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, required DefaultWorkflow body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/draft/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13104,7 +13104,7 @@ class WorkflowSchemeDraftsApi {
   Future<WorkflowScheme> deleteDraftDefaultWorkflow(int id) async {
     return WorkflowScheme.fromJson(await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/draft/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13120,7 +13120,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, required String issueType}) async {
     return IssueTypeWorkflowMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/draft/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13138,7 +13138,7 @@ class WorkflowSchemeDraftsApi {
       required IssueTypeWorkflowMapping body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/draft/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13156,7 +13156,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, required String issueType}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/draft/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13182,7 +13182,7 @@ class WorkflowSchemeDraftsApi {
       required PublishDraftWorkflowScheme body}) async {
     await _client.send(
       'post',
-      'rest/api/3/workflowscheme/{id}/draft/publish',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/publish',
       pathParameters: {
         'id': '$id',
       },
@@ -13201,7 +13201,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, String? workflowName}) async {
     return IssueTypesWorkflowMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/draft/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13223,7 +13223,7 @@ class WorkflowSchemeDraftsApi {
       required IssueTypesWorkflowMapping body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/draft/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13243,7 +13243,7 @@ class WorkflowSchemeDraftsApi {
       {required int id, required String workflowName}) async {
     await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/draft/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/draft/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13276,7 +13276,7 @@ class WorkflowSchemeProjectAssociationsApi {
       getWorkflowSchemeProjectAssociations(List<int> projectId) async {
     return ContainerOfWorkflowSchemeAssociations.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/project',
       queryParameters: {
         'projectId': projectId.map((e) => '$e').join(','),
       },
@@ -13294,7 +13294,7 @@ class WorkflowSchemeProjectAssociationsApi {
       {required WorkflowSchemeProjectAssociation body}) async {
     return await _client.send(
       'put',
-      'rest/api/3/workflowscheme/project',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/project',
       body: body.toJson(),
     );
   }
@@ -13316,7 +13316,7 @@ class WorkflowSchemesApi {
       {int? startAt, int? maxResults}) async {
     return PageBeanWorkflowScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -13332,7 +13332,7 @@ class WorkflowSchemesApi {
       {required WorkflowScheme body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflowscheme',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme',
       body: body.toJson(),
     ));
   }
@@ -13345,7 +13345,7 @@ class WorkflowSchemesApi {
       {required int id, bool? returnDraftIfExists}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -13368,7 +13368,7 @@ class WorkflowSchemesApi {
       {required int id, required WorkflowScheme body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -13384,7 +13384,7 @@ class WorkflowSchemesApi {
   Future<dynamic> deleteWorkflowScheme(int id) async {
     return await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}',
       pathParameters: {
         'id': '$id',
       },
@@ -13402,7 +13402,7 @@ class WorkflowSchemesApi {
       {required int id, bool? returnDraftIfExists}) async {
     return DefaultWorkflow.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13426,7 +13426,7 @@ class WorkflowSchemesApi {
       {required int id, required DefaultWorkflow body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13448,7 +13448,7 @@ class WorkflowSchemesApi {
       {required int id, bool? updateDraftIfNeeded}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/default',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/default',
       pathParameters: {
         'id': '$id',
       },
@@ -13470,7 +13470,7 @@ class WorkflowSchemesApi {
       bool? returnDraftIfExists}) async {
     return IssueTypeWorkflowMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13497,7 +13497,7 @@ class WorkflowSchemesApi {
       required IssueTypeWorkflowMapping body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13522,7 +13522,7 @@ class WorkflowSchemesApi {
       bool? updateDraftIfNeeded}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/issuetype/{issueType}',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/issuetype/{issueType}',
       pathParameters: {
         'id': '$id',
         'issueType': issueType,
@@ -13544,7 +13544,7 @@ class WorkflowSchemesApi {
       bool? returnDraftIfExists}) async {
     return IssueTypesWorkflowMapping.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflowscheme/{id}/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13573,7 +13573,7 @@ class WorkflowSchemesApi {
       required IssueTypesWorkflowMapping body}) async {
     return WorkflowScheme.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflowscheme/{id}/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13600,7 +13600,7 @@ class WorkflowSchemesApi {
       bool? updateDraftIfNeeded}) async {
     await _client.send(
       'delete',
-      'rest/api/3/workflowscheme/{id}/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflowscheme/{id}/workflow',
       pathParameters: {
         'id': '$id',
       },
@@ -13626,7 +13626,7 @@ class WorkflowStatusCategoriesApi {
   Future<List<StatusCategory>> getStatusCategories() async {
     return (await _client.send(
       'get',
-      'rest/api/3/statuscategory',
+      'rest/api/${ApiClient.API_VERSION}/statuscategory',
     ) as List<Object?>)
         .map((i) =>
             StatusCategory.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -13640,7 +13640,7 @@ class WorkflowStatusCategoriesApi {
   Future<StatusCategory> getStatusCategory(String idOrKey) async {
     return StatusCategory.fromJson(await _client.send(
       'get',
-      'rest/api/3/statuscategory/{idOrKey}',
+      'rest/api/${ApiClient.API_VERSION}/statuscategory/{idOrKey}',
       pathParameters: {
         'idOrKey': idOrKey,
       },
@@ -13663,7 +13663,7 @@ class WorkflowStatusesApi {
   Future<List<StatusDetails>> getStatuses() async {
     return (await _client.send(
       'get',
-      'rest/api/3/status',
+      'rest/api/${ApiClient.API_VERSION}/status',
     ) as List<Object?>)
         .map((i) =>
             StatusDetails.fromJson(i as Map<String, Object?>? ?? const {}))
@@ -13682,7 +13682,7 @@ class WorkflowStatusesApi {
   Future<StatusDetails> getStatus(String idOrName) async {
     return StatusDetails.fromJson(await _client.send(
       'get',
-      'rest/api/3/status/{idOrName}',
+      'rest/api/${ApiClient.API_VERSION}/status/{idOrName}',
       pathParameters: {
         'idOrName': idOrName,
       },
@@ -13712,7 +13712,7 @@ class WorkflowTransitionPropertiesApi {
       String? workflowMode}) async {
     return WorkflowTransitionProperty.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflow/transitions/{transitionId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/workflow/transitions/{transitionId}/properties',
       pathParameters: {
         'transitionId': '$transitionId',
       },
@@ -13743,7 +13743,7 @@ class WorkflowTransitionPropertiesApi {
       required WorkflowTransitionProperty body}) async {
     return WorkflowTransitionProperty.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflow/transitions/{transitionId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/workflow/transitions/{transitionId}/properties',
       pathParameters: {
         'transitionId': '$transitionId',
       },
@@ -13771,7 +13771,7 @@ class WorkflowTransitionPropertiesApi {
       required WorkflowTransitionProperty body}) async {
     return WorkflowTransitionProperty.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflow/transitions/{transitionId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/workflow/transitions/{transitionId}/properties',
       pathParameters: {
         'transitionId': '$transitionId',
       },
@@ -13798,7 +13798,7 @@ class WorkflowTransitionPropertiesApi {
       String? workflowMode}) async {
     await _client.send(
       'delete',
-      'rest/api/3/workflow/transitions/{transitionId}/properties',
+      'rest/api/${ApiClient.API_VERSION}/workflow/transitions/{transitionId}/properties',
       pathParameters: {
         'transitionId': '$transitionId',
       },
@@ -13852,7 +13852,7 @@ class WorkflowTransitionRulesApi {
           String? expand}) async {
     return PageBeanWorkflowTransitionRules.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflow/rule/config',
+      'rest/api/${ApiClient.API_VERSION}/workflow/rule/config',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -13901,7 +13901,7 @@ class WorkflowTransitionRulesApi {
           {required WorkflowTransitionRulesUpdate body}) async {
     return WorkflowTransitionRulesUpdateErrors.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflow/rule/config',
+      'rest/api/${ApiClient.API_VERSION}/workflow/rule/config',
       body: body.toJson(),
     ));
   }
@@ -13925,7 +13925,7 @@ class WorkflowTransitionRulesApi {
           {required WorkflowsWithTransitionRulesDetails body}) async {
     return WorkflowTransitionRulesUpdateErrors.fromJson(await _client.send(
       'put',
-      'rest/api/3/workflow/rule/config/delete',
+      'rest/api/${ApiClient.API_VERSION}/workflow/rule/config/delete',
       body: body.toJson(),
     ));
   }
@@ -13952,7 +13952,7 @@ class WorkflowsApi {
       {String? workflowName}) async {
     return (await _client.send(
       'get',
-      'rest/api/3/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflow',
       queryParameters: {
         if (workflowName != null) 'workflowName': workflowName,
       },
@@ -14796,7 +14796,7 @@ class WorkflowsApi {
       {required CreateWorkflowDetails body}) async {
     return WorkflowIDs.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflow',
+      'rest/api/${ApiClient.API_VERSION}/workflow',
       body: body.toJson(),
     ));
   }
@@ -14819,7 +14819,7 @@ class WorkflowsApi {
       bool? isActive}) async {
     return PageBeanWorkflow.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflow/search',
+      'rest/api/${ApiClient.API_VERSION}/workflow/search',
       queryParameters: {
         if (startAt != null) 'startAt': '$startAt',
         if (maxResults != null) 'maxResults': '$maxResults',
@@ -14847,7 +14847,7 @@ class WorkflowsApi {
   Future<void> deleteInactiveWorkflow(String entityId) async {
     await _client.send(
       'delete',
-      'rest/api/3/workflow/{entityId}',
+      'rest/api/${ApiClient.API_VERSION}/workflow/{entityId}',
       pathParameters: {
         'entityId': entityId,
       },
@@ -14867,7 +14867,7 @@ class WorkflowsApi {
       {String? expand, required WorkflowReadRequest body}) async {
     return WorkflowReadResponse.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflows',
+      'rest/api/${ApiClient.API_VERSION}/workflows',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -15518,7 +15518,7 @@ class WorkflowsApi {
       {String? workflowId, String? projectId, String? issueTypeId}) async {
     return WorkflowCapabilities.fromJson(await _client.send(
       'get',
-      'rest/api/3/workflows/capabilities',
+      'rest/api/${ApiClient.API_VERSION}/workflows/capabilities',
       queryParameters: {
         if (workflowId != null) 'workflowId': workflowId,
         if (projectId != null) 'projectId': projectId,
@@ -15539,7 +15539,7 @@ class WorkflowsApi {
       {required WorkflowCreateRequest body}) async {
     return WorkflowCreateResponse.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflows/create',
+      'rest/api/${ApiClient.API_VERSION}/workflows/create',
       body: body.toJson(),
     ));
   }
@@ -15556,7 +15556,7 @@ class WorkflowsApi {
       {required WorkflowCreateValidateRequest body}) async {
     return WorkflowValidationErrorList.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflows/create/validation',
+      'rest/api/${ApiClient.API_VERSION}/workflows/create/validation',
       body: body.toJson(),
     ));
   }
@@ -15573,7 +15573,7 @@ class WorkflowsApi {
       {String? expand, required WorkflowUpdateRequest body}) async {
     return WorkflowUpdateResponse.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflows/update',
+      'rest/api/${ApiClient.API_VERSION}/workflows/update',
       queryParameters: {
         if (expand != null) 'expand': expand,
       },
@@ -15593,7 +15593,7 @@ class WorkflowsApi {
       {required WorkflowUpdateValidateRequestBean body}) async {
     return WorkflowValidationErrorList.fromJson(await _client.send(
       'post',
-      'rest/api/3/workflows/update/validation',
+      'rest/api/${ApiClient.API_VERSION}/workflows/update/validation',
       body: body.toJson(),
     ));
   }
@@ -27893,7 +27893,7 @@ class Filter {
   /// A URL to view the filter results in Jira, using the
   /// [Search for issues using JQL](#api-rest-api-3-filter-search-get) operation
   /// with the filter's JQL string to return the filter results. For example,
-  /// *https://your-domain.atlassian.net/rest/api/3/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.
+  /// *https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.
   final String? searchUrl;
 
   /// The URL of the filter.
@@ -28094,7 +28094,7 @@ class FilterDetails {
   /// A URL to view the filter results in Jira, using the
   /// [Search for issues using JQL](#api-rest-api-3-filter-search-get) operation
   /// with the filter's JQL string to return the filter results. For example,
-  /// *https://your-domain.atlassian.net/rest/api/3/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.
+  /// *https://your-domain.atlassian.net/rest/api/${ApiClient.API_VERSION}/search?jql=project+%3D+SSP+AND+issuetype+%3D+Bug*.
   final String? searchUrl;
 
   /// The URL of the filter.
