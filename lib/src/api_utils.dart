@@ -7,7 +7,7 @@ export 'package:http/http.dart' show Client;
 export 'package:http/http.dart' show MultipartFile;
 
 class ApiClient {
-  static API_VERSION = '3';
+  static var API_VERSION = '3';
   static const _headerAtlassianToken = 'X-Atlassian-Token';
   static const _headerExperimental = 'X-ExperimentalApi';
 
