@@ -7838,21 +7838,23 @@ class IssuesApi {
       List<String>? issuetypeIds,
       List<String>? issuetypeNames,
       String? expand}) async {
-    return IssueCreateMetadata.fromJson(await _client.send(
-      'get',
-      'rest/api/${ApiClient.API_VERSION}/issue/createmeta',
+      var url = '/rest/api/${ApiClient.API_VERSION}/issue/createmeta/${projectIds?.first}/issuetypes/${issuetypeIds?.first}';//'rest/api/${ApiClient.API_VERSION}/issue/createmeta'
+     return IssueCreateMetadata.fromJson(await _client.send(
+       'get',
+       url,
       queryParameters: {
-        if (projectIds != null)
-          'projectIds': projectIds.map((e) => e).join(','),
-        if (projectKeys != null)
-          'projectKeys': projectKeys.map((e) => e).join(','),
-        if (issuetypeIds != null)
-          'issuetypeIds': issuetypeIds.map((e) => e).join(','),
-        if (issuetypeNames != null)
-          'issuetypeNames': issuetypeNames.map((e) => e).join(','),
-        if (expand != null) 'expand': expand,
+        'expand': expand,
       },
     ));
+    /*if (projectIds != null)
+      'projectIds': projectIds.map((e) => e).join(','),
+    if (projectKeys != null)
+      'projectKeys': projectKeys.map((e) => e).join(','),
+    if (issuetypeIds != null)
+      'issuetypeIds': issuetypeIds.map((e) => e).join(','),
+    if (issuetypeNames != null)
+      'issuetypeNames': issuetypeNames.map((e) => e).join(','),
+    if (expand != null) */
   }
 
   /// Enables admins to unarchive up to 1000 issues in a single request using
