@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+
 import 'package:http/http.dart';
 import 'package:path/path.dart' as p;
 
@@ -83,9 +84,11 @@ class ApiClient {
     request
       ..headers[_headerExperimental] = 'opt-in'
       ..headers['User-Agent'] = 'Dart/atlassian_apis'
-      ..followRedirects = followRedirects;
+      ..followRedirects = true
+    ..persistentConnection = false;
 
-    var response = await Response.fromStream(await _client.send(request));
+    var c = await _client.send(request);
+    var response = await Response.fromStream(c);
     ApiException.checkResponse(response);
 
     if (response.statusCode == 302) {

@@ -7838,14 +7838,26 @@ class IssuesApi {
       List<String>? issuetypeIds,
       List<String>? issuetypeNames,
       String? expand}) async {
-      var url = '/rest/api/${ApiClient.API_VERSION}/issue/createmeta/${projectIds?.first}/issuetypes/${issuetypeIds?.first}';//'rest/api/${ApiClient.API_VERSION}/issue/createmeta'
-     return IssueCreateMetadata.fromJson(await _client.send(
+      var url = 'rest/api/${ApiClient.API_VERSION}/issue/createmeta/${projectKeys?.first}/issuetypes/${issuetypeIds?.first}';//'rest/api/${ApiClient.API_VERSION}/issue/createmeta'
+     var response  = await _client.send(
        'get',
        url,
-      queryParameters: {
-        'expand': expand,
-      },
-    ));
+       queryParameters: {
+         if (expand != null)
+           'expand': expand,
+       },
+     ) as Map<String, Object?>;
+     var values = response['values'];
+     var fieldMap = <String, Object?>{};
+    if(values is List){
+
+      values.forEach((v){
+        fieldMap[v['fieldId']] = v;
+    });
+    }
+     var data = {'projects':[{'issuetypes':[{'fields':fieldMap}]}]};
+
+      return IssueCreateMetadata.fromJson(data);
     /*if (projectIds != null)
       'projectIds': projectIds.map((e) => e).join(','),
     if (projectKeys != null)
